@@ -124,6 +124,81 @@
     .dayhdr{top:auto;position:static}
     .filters{position:static}
   }
+  /* ===== Admin row ===== */
+  .adminrow{display:flex;align-items:center;gap:10px;margin-top:12px;flex-wrap:wrap}
+  #adminBtn{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.25);padding:7px 14px;border-radius:999px;font-size:12.5px;font-weight:700;cursor:pointer;transition:.15s}
+  #adminBtn:hover{background:rgba(255,255,255,.22)}
+  #adminBtn.on{background:var(--ok);border-color:var(--ok)}
+  #adminStatus{font-size:11.5px;color:#bcd4ea;font-weight:600}
+  body.editing{outline:3px solid var(--gold);outline-offset:-3px}
+
+  /* ===== Score display / winner ===== */
+  .card .matchup .score{font-weight:800;color:var(--navy);font-size:17px;background:var(--sky);padding:2px 10px;border-radius:8px;margin:0 4px}
+  .card .matchup .score .dash{color:var(--muted);margin:0 3px;font-weight:600}
+  .card .t.win{color:var(--ok);font-weight:800}
+  .card .t.pending{color:var(--muted);font-style:italic;font-weight:600}
+  .card.played{border-left-color:var(--ok)}
+  /* score editor inputs */
+  .scoreEdit{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:15px;font-weight:600}
+  .scoreEdit .t{flex:1;min-width:80px}
+  .scoreEdit .t:last-of-type{text-align:right}
+  .scin{display:flex;align-items:center;gap:4px;flex:none}
+  .scin input{width:42px;height:38px;text-align:center;font-size:17px;font-weight:800;border:2px solid var(--blue);border-radius:9px;color:var(--navy);padding:0}
+  .scin input:focus{outline:none;border-color:var(--gold);background:#fffdf5}
+  .scin b{color:var(--muted)}
+
+  /* ===== PIN modal ===== */
+  .modal{position:fixed;inset:0;background:rgba(11,42,74,.55);z-index:100;display:none;align-items:center;justify-content:center;padding:20px}
+  .modal.show{display:flex}
+  .modal-card{background:#fff;border-radius:16px;padding:22px;max-width:340px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.3);text-align:center}
+  .modal-card h3{margin:0 0 4px;color:var(--navy);font-size:18px}
+  .modal-card p{margin:0 0 16px;color:var(--muted);font-size:13px}
+  #pinInput{width:100%;font-size:22px;text-align:center;letter-spacing:4px;padding:12px;border:2px solid var(--line);border-radius:10px;margin-bottom:8px}
+  #pinInput:focus{outline:none;border-color:var(--blue)}
+  #pinErr{color:var(--red);font-size:12.5px;min-height:16px;margin-bottom:8px;font-weight:600}
+  .modal-btns{display:flex;gap:8px}
+  .modal-btns button{flex:1;padding:11px;border-radius:10px;border:0;font-size:14px;font-weight:700;cursor:pointer}
+  #pinOk{background:var(--navy);color:#fff}
+  #pinCancel{background:var(--sky);color:var(--navy2)}
+
+  /* ===== Zonas standings ===== */
+  .zcard li .posn{width:20px;height:20px;border-radius:50%;background:var(--navy);color:#fff;font-size:11px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;flex:none}
+  .zcard.F li .posn{background:#7a1f57}
+  .zcard li.banco .posn{background:var(--gold);color:var(--navy)}
+  .ztip{padding:6px 14px 10px;font-size:10.5px;color:var(--muted);font-style:italic}
+
+  /* ===== Playoffs bracket ===== */
+  #view-playoffs .secttitle{margin-bottom:6px}
+  .po-note{background:#eef6ff;border:1px solid #d3e6fb;border-radius:12px;padding:11px 14px;font-size:12.5px;color:var(--navy2);margin-bottom:16px;line-height:1.5}
+  .po-note b{color:var(--navy)}
+  .po-rama{margin-bottom:22px}
+  .po-ramahdr{font-size:15px;font-weight:800;color:#fff;background:linear-gradient(135deg,var(--navy),var(--blue));padding:9px 16px;border-radius:10px;margin-bottom:12px;letter-spacing:.5px}
+  .po-cuadro{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;margin-bottom:12px;box-shadow:var(--shadow)}
+  .po-cuadro.oro{border-top:3px solid var(--gold)}
+  .po-cuadro.plata{border-top:3px solid #9fb3c8}
+  .po-cuadro.bronce{border-top:3px solid #c88a4a}
+  .po-clabel{font-size:14px;font-weight:800;color:var(--navy);margin-bottom:10px}
+  .po-tris{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:10px;margin-bottom:12px}
+  .po-tri{border:1px solid var(--line);border-radius:10px;padding:8px;background:#fbfdff}
+  .po-trih{font-size:11px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+  .po-triw{margin-top:6px;padding-top:6px;border-top:1px dashed var(--line);font-size:12.5px;font-weight:700;color:var(--ok)}
+  .po-triw .pend{color:var(--muted);font-weight:600;font-style:italic}
+  .po-round{margin-top:6px;padding:10px;border-radius:10px;background:var(--sky)}
+  .po-round.final{background:#fff8e6;border:1px solid #f3e2a8}
+  .po-rlabel{font-size:12px;font-weight:800;color:var(--navy);margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px}
+  .po-champ{margin-top:8px;padding:8px 12px;background:var(--gold);color:var(--navy);border-radius:8px;font-size:14px;font-weight:700;text-align:center}
+  /* mini match row */
+  .pom{display:flex;align-items:center;gap:8px;padding:6px 4px;font-size:13px;border-bottom:1px solid #f1f5f9}
+  .pom:last-child{border-bottom:0}
+  .pom .pnn{flex:none;width:26px;height:20px;background:var(--navy);color:#fff;border-radius:5px;font-size:10.5px;font-weight:700;display:inline-flex;align-items:center;justify-content:center}
+  .pom span:not(.pnn):not(.pr):not(.pv){flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .pom .pv{flex:none;color:var(--muted);font-size:11px;font-weight:600}
+  .pom .pr{flex:none;font-weight:800;color:var(--navy);background:#fff;border:1px solid var(--line);border-radius:6px;padding:1px 7px}
+  .pom .w{font-weight:800;color:var(--ok)}
+  .pom .pb{color:var(--red);font-weight:800}
+  .pom .pend{color:var(--muted);font-style:italic}
+  .pom.done{background:#f6fbf7}
+
 </style>
 </head>
 <body>
@@ -140,7 +215,9 @@
       <button class="tab active" data-view="fixture">📅 Fixture</button>
       <button class="tab" data-view="zonas">🏐 Zonas / Grupos</button>
       <button class="tab" data-view="banco">⭐ Mi equipo</button>
+      <button class="tab" data-view="playoffs">🏆 Playoffs</button>
     </div>
+    <div class="adminrow"><button id="adminBtn">🔒 Cargar resultados</button><span id="adminStatus"></span></div>
   </div>
 </header>
 
@@ -191,6 +268,12 @@
     <div id="bancoList"></div>
   </section>
 
+  <section class="view" id="view-playoffs">
+    <div class="secttitle">🏆 Playoffs · Cuadro de llaves <small>· se completa al cargar resultados</small></div>
+    <div class="po-note">📌 A medida que se cargan los <b>resultados</b>, el cuadro avanza solo: se calculan las <b>posiciones de cada zona</b>, los <b>ganadores de cada llave</b> y los cruces siguientes. Los cupos aún sin definir aparecen en gris.</div>
+    <div id="poGrid"></div>
+  </section>
+
 </main>
 
 <footer>
@@ -198,37 +281,166 @@
   Los horarios pueden cambiar; confirmá siempre con la organización. · Vamos <b>Banco República</b> 🔴🔵
 </footer>
 
+<div class="modal" id="pinModal">
+  <div class="modal-card">
+    <h3>🔒 Cargar resultados</h3>
+    <p>Ingresá el PIN de la mesa de control para habilitar la carga de marcadores.</p>
+    <input id="pinInput" type="password" inputmode="numeric" placeholder="PIN" maxlength="12">
+    <div id="pinErr"></div>
+    <div class="modal-btns"><button id="pinCancel">Cancelar</button><button id="pinOk">Entrar</button></div>
+  </div>
+</div>
+
 <div class="latam-bar">Desarrollado por <b>LatamNova Group System SAS.</b></div>
 
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
 <script>
 window.MATCHES = [{"venue":"Gimnasia","day":"Sabado 15","court":"GYE (Basquet)","courtNum":"Cancha 1","hora":"10:00","pn":1,"rama":"M","zona":"2","teamA":"Gimnasia \"A\"","teamB":"Regatas SF","phase":"group"},{"venue":"Gimnasia","day":"Sabado 15","court":"GYE (Basquet)","courtNum":"Cancha 1","hora":"11:00","pn":2,"rama":"M","zona":"2","teamA":"EIMM","teamB":"Provincial Ros.","phase":"group"},{"venue":"Gimnasia","day":"Sabado 15","court":"GYE (Basquet)","courtNum":"Cancha 1","hora":"12:00","pn":3,"rama":"M","zona":"2","teamA":"Union SF","teamB":"Nautico","phase":"group"},{"venue":"Gimnasia","day":"Sabado 15","court":"GYE (Basquet)","courtNum":"Cancha 1","hora":"13:00","pn":4,"rama":"M","zona":"1","teamA":"Gimnasia \"B\"","teamB":"Villareal","phase":"group"},{"venue":"Gimnasia","day":"Sabado 15","court":"GYE (Basquet)","courtNum":"Cancha 1","hora":"14:00","pn":5,"rama":"M","zona":"1","teamA":"J. N. Galvez","teamB":"Banco Rep. UY","phase":"group"},{"venue":"Gimnasia","day":"Sabado 15","court":"GYE (Basquet)","courtNum":"Cancha 1","hora":"15:00","pn":6,"rama":"M","zona":"1","teamA":"Cevils Voley","teamB":"Campo Belo SP","phase":"group"},{"venue":"Gimnasia","day":"Sabado 15","court":"GYE (Basquet)","courtNum":"Cancha 1","hora":"16:00","pn":7,"rama":"M","zona":"1","teamA":"Banco Rep. UY","teamB":"Gimnasia \"B\"","phase":"group"},{"venue":"Gimnasia","day":"Sabado 15","court":"GYE (Basquet)","courtNum":"Cancha 1","hora":"17:00","pn":8,"rama":"M","zona":"1","teamA":"Campo Belo SP","teamB":"J. N. Galvez","phase":"group"},{"venue":"Gimnasia","day":"Sabado 15","court":"GYE (Basquet)","courtNum":"Cancha 1","hora":"18:00","pn":9,"rama":"M","zona":"1","teamA":"Villareal","teamB":"Cevils Voley","phase":"group"},{"venue":"Gimnasia","day":"Sabado 15","court":"GYE (Basquet)","courtNum":"Cancha 1","hora":"19:00","pn":10,"rama":"M","zona":"1","teamA":"Banco Rep. UY","teamB":"Villareal","phase":"group"},{"venue":"Gimnasia","day":"Sabado 15","court":"GYE (Basquet)","courtNum":"Cancha 1","hora":"20:00","pn":11,"rama":"M","zona":"1","teamA":"J. N. Galvez","teamB":"Cevils Voley","phase":"group"},{"venue":"Gimnasia","day":"Sabado 15","court":"GYE (Basquet)","courtNum":"Cancha 1","hora":"21:00","pn":12,"rama":"M","zona":"1","teamA":"Gimnasia \"B\"","teamB":"Campo Belo SP","phase":"group"},{"venue":"Gimnasia","day":"Sabado 15","court":"GYE (De Cecco)","courtNum":"Cancha 2","hora":"10:00","pn":13,"rama":"F","zona":"A","teamA":"Lanus","teamB":"San Justino","phase":"group"},{"venue":"Gimnasia","day":"Sabado 15","court":"GYE (De Cecco)","courtNum":"Cancha 2","hora":"11:00","pn":14,"rama":"F","zona":"A","teamA":"Sparta UY","teamB":"Nautico \"B\"","phase":"group"},{"venue":"Gimnasia","day":"Sabado 15","court":"GYE (De Cecco)","courtNum":"Cancha 2","hora":"12:00","pn":15,"rama":"F","zona":"D","teamA":"Poeta L. Cba","teamB":"San Jorge","phase":"group"},{"venue":"Gimnasia","day":"Sabado 15","court":"GYE (De Cecco)","courtNum":"Cancha 2","hora":"13:00","pn":16,"rama":"F","zona":"A","teamA":"San Justino","teamB":"Gimnasia \"A\"","phase":"group"},{"venue":"Gimnasia","day":"Sabado 15","court":"GYE (De Cecco)","courtNum":"Cancha 2","hora":"14:00","pn":17,"rama":"F","zona":"A","teamA":"Nautico \"B\"","teamB":"Lanus","phase":"group"},{"venue":"Gimnasia","day":"Sabado 15","court":"GYE (De Cecco)","courtNum":"Cancha 2","hora":"15:00","pn":18,"rama":"F","zona":"D","teamA":"Poeta L. Cba","teamB":"Banco SF \"A\"","phase":"group"},{"venue":"Gimnasia","day":"Sabado 15","court":"GYE (De Cecco)","courtNum":"Cancha 2","hora":"16:00","pn":19,"rama":"F","zona":"A","teamA":"Sparta UY","teamB":"Gimnasia \"A\"","phase":"group"},{"venue":"Gimnasia","day":"Sabado 15","court":"GYE (De Cecco)","courtNum":"Cancha 2","hora":"17:00","pn":20,"rama":"F","zona":"B","teamA":"Banco SF \"B\"","teamB":"Gimnasia \"B\"","phase":"group"},{"venue":"Gimnasia","day":"Sabado 15","court":"GYE (De Cecco)","courtNum":"Cancha 2","hora":"18:00","pn":21,"rama":"F","zona":"D","teamA":"Banco SF \"A\"","teamB":"San Isidro Cba","phase":"group"},{"venue":"Gimnasia","day":"Sabado 15","court":"GYE (De Cecco)","courtNum":"Cancha 2","hora":"19:00","pn":22,"rama":"F","zona":"B","teamA":"G. Belgrano BS","teamB":"Banco SF \"B\"","phase":"group"},{"venue":"Gimnasia","day":"Sabado 15","court":"GYE (De Cecco)","courtNum":"Cancha 2","hora":"20:00","pn":23,"rama":"F","zona":"B","teamA":"Gimnasia \"B\"","teamB":"J Ferreira UY","phase":"group"},{"venue":"Gimnasia","day":"Sabado 15","court":"GYE (Micro estadio)","courtNum":"Cancha 3","hora":"10:00","pn":24,"rama":"F","zona":"B","teamA":"J Ferreira UY","teamB":"G. Belgrano BS","phase":"group"},{"venue":"Gimnasia","day":"Sabado 15","court":"GYE (Micro estadio)","courtNum":"Cancha 3","hora":"11:00","pn":25,"rama":"F","zona":"B","teamA":"Banco SF \"B\"","teamB":"EIMM","phase":"group"},{"venue":"Gimnasia","day":"Sabado 15","court":"GYE (Micro estadio)","courtNum":"Cancha 3","hora":"12:00","pn":26,"rama":"F","zona":"D","teamA":"Union SF","teamB":"San Isidro Cba","phase":"group"},{"venue":"Gimnasia","day":"Sabado 15","court":"GYE (Micro estadio)","courtNum":"Cancha 3","hora":"13:00","pn":27,"rama":"F","zona":"B","teamA":"EIMM","teamB":"J Ferreira UY","phase":"group"},{"venue":"Gimnasia","day":"Sabado 15","court":"GYE (Micro estadio)","courtNum":"Cancha 3","hora":"14:00","pn":28,"rama":"F","zona":"B","teamA":"G. Belgrano BS","teamB":"Gimnasia \"B\"","phase":"group"},{"venue":"Gimnasia","day":"Sabado 15","court":"GYE (Micro estadio)","courtNum":"Cancha 3","hora":"15:00","pn":29,"rama":"F","zona":"D","teamA":"San Jorge","teamB":"Union SF","phase":"group"},{"venue":"Gimnasia","day":"Sabado 15","court":"GYE (Micro estadio)","courtNum":"Cancha 3","hora":"16:00","pn":30,"rama":"M","zona":"2","teamA":"Nautico","teamB":"Gimnasia \"A\"","phase":"group"},{"venue":"Gimnasia","day":"Sabado 15","court":"GYE (Micro estadio)","courtNum":"Cancha 3","hora":"17:00","pn":31,"rama":"M","zona":"2","teamA":"Regatas SF","teamB":"Provincial Ros.","phase":"group"},{"venue":"Gimnasia","day":"Sabado 15","court":"GYE (Micro estadio)","courtNum":"Cancha 3","hora":"18:00","pn":32,"rama":"M","zona":"2","teamA":"Union SF","teamB":"EIMM","phase":"group"},{"venue":"Gimnasia","day":"Sabado 15","court":"GYE (Micro estadio)","courtNum":"Cancha 3","hora":"19:00","pn":33,"rama":"M","zona":"2","teamA":"Gimnasia \"A\"","teamB":"Provincial Ros.","phase":"group"},{"venue":"Gimnasia","day":"Sabado 15","court":"GYE (Micro estadio)","courtNum":"Cancha 3","hora":"20:00","pn":34,"rama":"M","zona":"2","teamA":"Union SF","teamB":"Regatas SF","phase":"group"},{"venue":"Gimnasia","day":"Sabado 15","court":"GYE (Micro estadio)","courtNum":"Cancha 3","hora":null,"pn":35,"rama":"M","zona":"2","teamA":"Nautico","teamB":"EIMM","phase":"group"},{"venue":"Villa Dora","day":"Sabado 15","court":"Villa Dora","courtNum":"Cancha 1","hora":"10:00","pn":36,"rama":"F","zona":"C","teamA":"Muni Cba","teamB":"Central SC","phase":"group"},{"venue":"Villa Dora","day":"Sabado 15","court":"Villa Dora","courtNum":"Cancha 1","hora":"11:00","pn":37,"rama":"F","zona":"C","teamA":"Nautico \"A\"","teamB":"C. A. Franck","phase":"group"},{"venue":"Villa Dora","day":"Sabado 15","court":"Villa Dora","courtNum":"Cancha 1","hora":"12:00","pn":38,"rama":"F","zona":"E","teamA":"La Perla","teamB":"ASEBA","phase":"group"},{"venue":"Villa Dora","day":"Sabado 15","court":"Villa Dora","courtNum":"Cancha 1","hora":"13:00","pn":39,"rama":"F","zona":"C","teamA":"Central SC","teamB":"Nautico \"A\"","phase":"group"},{"venue":"Villa Dora","day":"Sabado 15","court":"Villa Dora","courtNum":"Cancha 1","hora":"14:00","pn":40,"rama":"F","zona":"C","teamA":"C. A. Franck","teamB":"Colon SF","phase":"group"},{"venue":"Villa Dora","day":"Sabado 15","court":"Villa Dora","courtNum":"Cancha 1","hora":"15:00","pn":41,"rama":"F","zona":"E","teamA":"J. N. Galvez","teamB":"Villa Dora \"B\"","phase":"group"},{"venue":"Villa Dora","day":"Sabado 15","court":"Villa Dora","courtNum":"Cancha 1","hora":"16:00","pn":42,"rama":"F","zona":"C","teamA":"Central SC","teamB":"C. A. Franck","phase":"group"},{"venue":"Villa Dora","day":"Sabado 15","court":"Villa Dora","courtNum":"Cancha 1","hora":"17:00","pn":43,"rama":"F","zona":"C","teamA":"Nautico \"A\"","teamB":"Muni Cba","phase":"group"},{"venue":"Villa Dora","day":"Sabado 15","court":"Villa Dora","courtNum":"Cancha 1","hora":"18:00","pn":44,"rama":"F","zona":"E","teamA":"La Perla","teamB":"Villa Dora \"B\"","phase":"group"},{"venue":"Villa Dora","day":"Sabado 15","court":"Villa Dora","courtNum":"Cancha 1","hora":"19:00","pn":45,"rama":"F","zona":"C","teamA":"Colon SF","teamB":"Central SC","phase":"group"},{"venue":"Villa Dora","day":"Sabado 15","court":"Villa Dora","courtNum":"Cancha 2","hora":"10:00","pn":46,"rama":"F","zona":"F","teamA":"Derqui","teamB":"Libertad SJ","phase":"group"},{"venue":"Villa Dora","day":"Sabado 15","court":"Villa Dora","courtNum":"Cancha 2","hora":"11:00","pn":47,"rama":"F","zona":"F","teamA":"Alma Jrs","teamB":"Argentino SC","phase":"group"},{"venue":"Villa Dora","day":"Sabado 15","court":"Villa Dora","courtNum":"Cancha 2","hora":"12:00","pn":48,"rama":"F","zona":"E","teamA":"Regatas SF","teamB":"J. N. Galvez","phase":"group"},{"venue":"Villa Dora","day":"Sabado 15","court":"Villa Dora","courtNum":"Cancha 2","hora":"13:00","pn":49,"rama":"F","zona":"F","teamA":"Libertad SJ","teamB":"Villa Dora \"A\"","phase":"group"},{"venue":"Villa Dora","day":"Sabado 15","court":"Villa Dora","courtNum":"Cancha 2","hora":"14:00","pn":50,"rama":"F","zona":"F","teamA":"Argentino SC","teamB":"Derqui","phase":"group"},{"venue":"Villa Dora","day":"Sabado 15","court":"Villa Dora","courtNum":"Cancha 2","hora":"15:00","pn":51,"rama":"F","zona":"E","teamA":"ASEBA","teamB":"Regatas SF","phase":"group"},{"venue":"Villa Dora","day":"Sabado 15","court":"Villa Dora","courtNum":"Cancha 2","hora":"16:00","pn":52,"rama":"F","zona":"F","teamA":"Alma Jrs","teamB":"Villa Dora \"A\"","phase":"group"},{"venue":"Villa Dora","day":"Sabado 15","court":"Villa Dora","courtNum":"Cancha 2","hora":"17:00","pn":53,"rama":"M","zona":"4","teamA":"Libertad SJ","teamB":"Esc. 221","phase":"group"},{"venue":"Villa Dora","day":"Sabado 15","court":"Villa Dora","courtNum":"Cancha 2","hora":"18:00","pn":54,"rama":"M","zona":"4","teamA":"Villa Dora \"B\"","teamB":"Colon SF","phase":"group"},{"venue":"Villa Dora","day":"Sabado 15","court":"Villa Dora","courtNum":"Cancha 2","hora":"19:00","pn":55,"rama":"M","zona":"4","teamA":"Libertad SJ","teamB":"Muni Cba","phase":"group"},{"venue":"Villa Dora","day":"Sabado 15","court":"Villa Dora","courtNum":"Cancha 3","hora":"10:00","pn":56,"rama":"M","zona":"3","teamA":"ASEBA","teamB":"Alma Jrs","phase":"group"},{"venue":"Villa Dora","day":"Sabado 15","court":"Villa Dora","courtNum":"Cancha 3","hora":"11:00","pn":57,"rama":"M","zona":"3","teamA":"Atalaya","teamB":"Villa Dora \"A\"","phase":"group"},{"venue":"Villa Dora","day":"Sabado 15","court":"Villa Dora","courtNum":"Cancha 3","hora":"12:00","pn":58,"rama":"M","zona":"3","teamA":"Derqui","teamB":"Adelante","phase":"group"},{"venue":"Villa Dora","day":"Sabado 15","court":"Villa Dora","courtNum":"Cancha 3","hora":"13:00","pn":59,"rama":"M","zona":"4","teamA":"Esc. 221","teamB":"Villa Dora \"B\"","phase":"group"},{"venue":"Villa Dora","day":"Sabado 15","court":"Villa Dora","courtNum":"Cancha 3","hora":"14:00","pn":60,"rama":"M","zona":"4","teamA":"Muni Cba","teamB":"Colon SF","phase":"group"},{"venue":"Villa Dora","day":"Sabado 15","court":"Villa Dora","courtNum":"Cancha 3","hora":"15:00","pn":61,"rama":"M","zona":"3","teamA":"Villa Dora \"A\"","teamB":"ASEBA","phase":"group"},{"venue":"Villa Dora","day":"Sabado 15","court":"Villa Dora","courtNum":"Cancha 3","hora":"16:00","pn":62,"rama":"M","zona":"3","teamA":"Alma Jrs","teamB":"Adelante","phase":"group"},{"venue":"Villa Dora","day":"Sabado 15","court":"Villa Dora","courtNum":"Cancha 3","hora":"17:00","pn":63,"rama":"M","zona":"3","teamA":"Atalaya","teamB":"Derqui","phase":"group"},{"venue":"Villa Dora","day":"Sabado 15","court":"Villa Dora","courtNum":"Cancha 3","hora":"18:00","pn":64,"rama":"M","zona":"3","teamA":"ASEBA","teamB":"Adelante","phase":"group"},{"venue":"Villa Dora","day":"Sabado 15","court":"Villa Dora","courtNum":"Cancha 3","hora":"19:00","pn":65,"rama":"M","zona":"3","teamA":"Villa Dora \"A\"","teamB":"Derqui","phase":"group"},{"venue":"Villa Dora","day":"Sabado 15","court":"Villa Dora","courtNum":"Cancha 3","hora":null,"pn":66,"rama":"M","zona":"3","teamA":"Atalaya","teamB":"Alma Jrs","phase":"group"},{"venue":"Gimnasia","day":"Domingo 16","court":"GYE (Basquet)","courtNum":"Cancha 1","hora":"9:00","pn":67,"rama":"M","zona":"1","teamA":"Cevils Voley","teamB":"Gimnasia \"B\"","phase":"group"},{"venue":"Gimnasia","day":"Domingo 16","court":"GYE (Basquet)","courtNum":"Cancha 1","hora":"10:00","pn":68,"rama":"M","zona":"1","teamA":"Campo Belo SP","teamB":"Banco Rep. UY","phase":"group"},{"venue":"Gimnasia","day":"Domingo 16","court":"GYE (Basquet)","courtNum":"Cancha 1","hora":"11:00","pn":69,"rama":"M","zona":"1","teamA":"Villareal","teamB":"J. N. Galvez","phase":"group"},{"venue":"Gimnasia","day":"Domingo 16","court":"GYE (Basquet)","courtNum":"Cancha 1","hora":"12:00","pn":70,"rama":"M","zona":"1","teamA":"Banco Rep. UY","teamB":"Cevils Voley","phase":"group"},{"venue":"Gimnasia","day":"Domingo 16","court":"GYE (Basquet)","courtNum":"Cancha 1","hora":"13:00","pn":71,"rama":"M","zona":"1","teamA":"Campo Belo SP","teamB":"Villareal","phase":"group"},{"venue":"Gimnasia","day":"Domingo 16","court":"GYE (Basquet)","courtNum":"Cancha 1","hora":"14:00","pn":72,"rama":"M","zona":"1","teamA":"Gimnasia \"B\"","teamB":"J. N. Galvez","phase":"group"},{"venue":"Gimnasia","day":"Domingo 16","court":"GYE (De Cecco)","courtNum":"Cancha 2","hora":"9:00","pn":73,"rama":"F","zona":"A","teamA":"Gimnasia \"A\"","teamB":"Nautico \"B\"","phase":"group"},{"venue":"Gimnasia","day":"Domingo 16","court":"GYE (De Cecco)","courtNum":"Cancha 2","hora":"10:00","pn":74,"rama":"F","zona":"A","teamA":"Lanus","teamB":"Sparta UY","phase":"group"},{"venue":"Gimnasia","day":"Domingo 16","court":"GYE (De Cecco)","courtNum":"Cancha 2","hora":"11:00","pn":75,"rama":"F","zona":"B","teamA":"Gimnasia \"B\"","teamB":"EIMM","phase":"group"},{"venue":"Gimnasia","day":"Domingo 16","court":"GYE (De Cecco)","courtNum":"Cancha 2","hora":"12:00","pn":76,"rama":"F","zona":"B","teamA":"J Ferreira UY","teamB":"Banco SF \"B\"","phase":"group"},{"venue":"Gimnasia","day":"Domingo 16","court":"GYE (De Cecco)","courtNum":"Cancha 2","hora":"13:00","pn":77,"rama":"F","zona":"A","teamA":"San Justino","teamB":"Sparta UY","phase":"group"},{"venue":"Gimnasia","day":"Domingo 16","court":"GYE (De Cecco)","courtNum":"Cancha 2","hora":"14:00","pn":78,"rama":"F","zona":"A","teamA":"Gimnasia \"A\"","teamB":"Lanus","phase":"group"},{"venue":"Gimnasia","day":"Domingo 16","court":"GYE (De Cecco)","courtNum":"Cancha 2","hora":null,"pn":79,"rama":"F","zona":"B","teamA":"EIMM","teamB":"G. Belgrano BS","phase":"group"},{"venue":"Gimnasia","day":"Domingo 16","court":"GYE (Micro estadio)","courtNum":"Cancha 3","hora":"9:00","pn":80,"rama":"M","zona":"2","teamA":"EIMM","teamB":"Regatas SF","phase":"group"},{"venue":"Gimnasia","day":"Domingo 16","court":"GYE (Micro estadio)","courtNum":"Cancha 3","hora":"10:00","pn":81,"rama":"M","zona":"2","teamA":"Nautico","teamB":"Provincial Ros.","phase":"group"},{"venue":"Gimnasia","day":"Domingo 16","court":"GYE (Micro estadio)","courtNum":"Cancha 3","hora":"11:00","pn":82,"rama":"M","zona":"2","teamA":"Union SF","teamB":"Gimnasia \"A\"","phase":"group"},{"venue":"Gimnasia","day":"Domingo 16","court":"GYE (Micro estadio)","courtNum":"Cancha 3","hora":"12:00","pn":83,"rama":"M","zona":"2","teamA":"EIMM","teamB":"Gimnasia \"A\"","phase":"group"},{"venue":"Gimnasia","day":"Domingo 16","court":"GYE (Micro estadio)","courtNum":"Cancha 3","hora":"13:00","pn":84,"rama":"M","zona":"2","teamA":"Regatas SF","teamB":"Nautico","phase":"group"},{"venue":"Gimnasia","day":"Domingo 16","court":"GYE (Micro estadio)","courtNum":"Cancha 3","hora":"14:00","pn":85,"rama":"M","zona":"2","teamA":"Union SF","teamB":"Provincial Ros.","phase":"group"},{"venue":"Gimnasia","day":"Domingo 16","court":"GYE (Micro estadio)","courtNum":"Cancha 3","hora":"15:00","pn":86,"rama":"F","zona":"A","teamA":"Nautico \"B\"","teamB":"San Justino","phase":"group"},{"venue":"Villa Dora","day":"Domingo 16","court":"Villa Dora","courtNum":"Cancha 1","hora":"10:00","pn":87,"rama":"F","zona":"E","teamA":"Villa Dora \"B\"","teamB":"ASEBA","phase":"group"},{"venue":"Villa Dora","day":"Domingo 16","court":"Villa Dora","courtNum":"Cancha 1","hora":"11:00","pn":88,"rama":"F","zona":"E","teamA":"Regatas SF","teamB":"La Perla","phase":"group"},{"venue":"Villa Dora","day":"Domingo 16","court":"Villa Dora","courtNum":"Cancha 1","hora":"12:00","pn":89,"rama":"F","zona":"E","teamA":"ASEBA","teamB":"J. N. Galvez","phase":"group"},{"venue":"Villa Dora","day":"Domingo 16","court":"Villa Dora","courtNum":"Cancha 1","hora":"13:00","pn":90,"rama":"F","zona":"E","teamA":"Villa Dora \"B\"","teamB":"Regatas SF","phase":"group"},{"venue":"Villa Dora","day":"Domingo 16","court":"Villa Dora","courtNum":"Cancha 1","hora":"14:00","pn":91,"rama":"F","zona":"E","teamA":"J. N. Galvez","teamB":"La Perla","phase":"group"},{"venue":"Villa Dora","day":"Domingo 16","court":"Villa Dora","courtNum":"Cancha 2","hora":"10:00","pn":92,"rama":"F","zona":"F","teamA":"Villa Dora \"A\"","teamB":"Argentino SC","phase":"group"},{"venue":"Villa Dora","day":"Domingo 16","court":"Villa Dora","courtNum":"Cancha 2","hora":"11:00","pn":93,"rama":"F","zona":"F","teamA":"Derqui","teamB":"Alma Jrs","phase":"group"},{"venue":"Villa Dora","day":"Domingo 16","court":"Villa Dora","courtNum":"Cancha 2","hora":"12:00","pn":94,"rama":"F","zona":"F","teamA":"Argentino SC","teamB":"Libertad SJ","phase":"group"},{"venue":"Villa Dora","day":"Domingo 16","court":"Villa Dora","courtNum":"Cancha 2","hora":"13:00","pn":95,"rama":"F","zona":"F","teamA":"Villa Dora \"A\"","teamB":"Derqui","phase":"group"},{"venue":"Villa Dora","day":"Domingo 16","court":"Villa Dora","courtNum":"Cancha 2","hora":"14:00","pn":96,"rama":"F","zona":"F","teamA":"Libertad SJ","teamB":"Alma Jrs","phase":"group"},{"venue":"Villa Dora","day":"Domingo 16","court":"Villa Dora","courtNum":"Cancha 3","hora":null,"pn":97,"rama":"M","zona":"3","teamA":"Villa Dora \"A\"","teamB":"Adelante","phase":"group"},{"venue":"Villa Dora","day":"Domingo 16","court":"Villa Dora","courtNum":"Cancha 3","hora":"10:00","pn":98,"rama":"M","zona":"3","teamA":"Derqui","teamB":"Alma Jrs","phase":"group"},{"venue":"Villa Dora","day":"Domingo 16","court":"Villa Dora","courtNum":"Cancha 3","hora":"11:00","pn":99,"rama":"M","zona":"3","teamA":"Atalaya","teamB":"ASEBA","phase":"group"},{"venue":"Villa Dora","day":"Domingo 16","court":"Villa Dora","courtNum":"Cancha 3","hora":"12:00","pn":100,"rama":"M","zona":"3","teamA":"Alma Jrs","teamB":"Villa Dora \"A\"","phase":"group"},{"venue":"Villa Dora","day":"Domingo 16","court":"Villa Dora","courtNum":"Cancha 3","hora":"13:00","pn":101,"rama":"M","zona":"3","teamA":"Atalaya","teamB":"Adelante","phase":"group"},{"venue":"Villa Dora","day":"Domingo 16","court":"Villa Dora","courtNum":"Cancha 3","hora":"14:00","pn":102,"rama":"M","zona":"3","teamA":"Derqui","teamB":"ASEBA","phase":"group"},{"venue":"Colon","day":"Domingo 16","court":"Colon","courtNum":"Cancha 1","hora":"10:00","pn":103,"rama":"M","zona":"4","teamA":"Esc. 221","teamB":"Colon SF","phase":"group"},{"venue":"Colon","day":"Domingo 16","court":"Colon","courtNum":"Cancha 1","hora":"11:00","pn":104,"rama":"M","zona":"4","teamA":"Muni Cba","teamB":"Villa Dora \"B\"","phase":"group"},{"venue":"Colon","day":"Domingo 16","court":"Colon","courtNum":"Cancha 1","hora":"12:00","pn":105,"rama":"M","zona":"4","teamA":"Libertad SJ","teamB":"Colon SF","phase":"group"},{"venue":"Colon","day":"Domingo 16","court":"Colon","courtNum":"Cancha 1","hora":"13:00","pn":106,"rama":"M","zona":"4","teamA":"Muni Cba","teamB":"Esc. 221","phase":"group"},{"venue":"Colon","day":"Domingo 16","court":"Colon","courtNum":"Cancha 1","hora":"14:00","pn":107,"rama":"M","zona":"4","teamA":"Villa Dora \"B\"","teamB":"Libertad SJ","phase":"group"},{"venue":"Colon","day":"Domingo 16","court":"Colon","courtNum":"Cancha 2","hora":"11:00","pn":108,"rama":"F","zona":"C","teamA":"Muni Cba","teamB":"Colon SF","phase":"group"},{"venue":"Colon","day":"Domingo 16","court":"Colon","courtNum":"Cancha 2","hora":"12:00","pn":109,"rama":"F","zona":"C","teamA":"Colon SF","teamB":"Nautico \"A\"","phase":"group"},{"venue":"Colon","day":"Domingo 16","court":"Colon","courtNum":"Cancha 2","hora":"13:00","pn":110,"rama":"F","zona":"C","teamA":"C. A. Franck","teamB":"Muni Cba","phase":"group"},{"venue":"Colon","day":"Domingo 16","court":"Colon","courtNum":"Cancha 3","hora":null,"pn":111,"rama":"F","zona":"D","teamA":"San Isidro Cba","teamB":"Poeta L. Cba","phase":"group"},{"venue":"Colon","day":"Domingo 16","court":"Colon","courtNum":"Cancha 3","hora":"11:00","pn":112,"rama":"F","zona":"D","teamA":"Banco SF \"A\"","teamB":"Union SF","phase":"group"},{"venue":"Colon","day":"Domingo 16","court":"Colon","courtNum":"Cancha 3","hora":"12:00","pn":113,"rama":"F","zona":"D","teamA":"San Isidro Cba","teamB":"San Jorge","phase":"group"},{"venue":"Colon","day":"Domingo 16","court":"Colon","courtNum":"Cancha 3","hora":"13:00","pn":114,"rama":"F","zona":"D","teamA":"Union SF","teamB":"Poeta L. Cba","phase":"group"},{"venue":"Colon","day":"Domingo 16","court":"Colon","courtNum":"Cancha 3","hora":null,"pn":115,"rama":"F","zona":"D","teamA":"San Jorge","teamB":"Banco SF \"A\"","phase":"group"},{"venue":"Gimnasia","day":"Domingo 16","court":"GYE (Basquet)","courtNum":"Cancha 1","hora":"18:00","pn":116,"rama":"M","zona":"TO \"5\"","teamA":"1ro Zona \"1\"","teamB":"3ro Zona \"4\"","phase":"play"},{"venue":"Gimnasia","day":"Domingo 16","court":"GYE (Basquet)","courtNum":"Cancha 1","hora":"19:00","pn":117,"rama":"M","zona":"TO \"6\"","teamA":"1ro Zona \"2\"","teamB":"3ro Zona \"1\"","phase":"play"},{"venue":"Gimnasia","day":"Domingo 16","court":"GYE (Basquet)","courtNum":"Cancha 1","hora":"20:00","pn":118,"rama":"M","zona":"TO \"7\"","teamA":"1ro Zona \"3\"","teamB":"3ro Zona \"2\"","phase":"play"},{"venue":"Gimnasia","day":"Domingo 16","court":"GYE (De Cecco)","courtNum":"Cancha 2","hora":"18:00","pn":119,"rama":"F","zona":"TO \"G\"","teamA":"1ro Zona \"A\"","teamB":"2do Zona \"F\"","phase":"play"},{"venue":"Gimnasia","day":"Domingo 16","court":"GYE (De Cecco)","courtNum":"Cancha 2","hora":"19:00","pn":120,"rama":"F","zona":"TO \"I\"","teamA":"1ro Zona \"C\"","teamB":"2do Zona \"E\"","phase":"play"},{"venue":"Gimnasia","day":"Domingo 16","court":"GYE (Micro estadio)","courtNum":"Cancha 3","hora":"18:00","pn":121,"rama":"F","zona":"TO \"H\"","teamA":"1ro Zona \"B\"","teamB":"2do Zona \"C\"","phase":"play"},{"venue":"Gimnasia","day":"Domingo 16","court":"GYE (Micro estadio)","courtNum":"Cancha 3","hora":"19:00","pn":122,"rama":"F","zona":"TO \"J\"","teamA":"1ro Zona \"E\"","teamB":"2do Zona \"B\"","phase":"play"},{"venue":"Gimnasia","day":"Domingo 16","court":"GYE (Micro estadio)","courtNum":"Cancha 3","hora":"20:00","pn":123,"rama":"M","zona":"TO \"8\"","teamA":"1ro Zona \"4\"","teamB":"3ro Zona \"3\"","phase":"play"},{"venue":"Villa Dora","day":"Domingo 16","court":"Villa Dora","courtNum":"Cancha 1","hora":"18:00","pn":124,"rama":"F","zona":"TB \"O\"","teamA":"5to Zona \"A\"","teamB":"5to Zona \"B\"","phase":"play"},{"venue":"Villa Dora","day":"Domingo 16","court":"Villa Dora","courtNum":"Cancha 2","hora":"18:00","pn":125,"rama":"F","zona":"TB \"P\"","teamA":"5to Zona \"D\"","teamB":"5to Zona \"E\"","phase":"play"},{"venue":"Colon","day":"Domingo 16","court":"Colon","courtNum":"Cancha 2","hora":null,"pn":126,"rama":"F","zona":"TP \"K\"","teamA":"3ro Zona \"A\"","teamB":"4to Zona \"F\"","phase":"play"},{"venue":"Gimnasia","day":"Domingo 16","court":"GYE (De Cecco)","courtNum":"Cancha 2","hora":"20:00","pn":127,"rama":"F","zona":"TP \"M\"","teamA":"3ro Zona \"C\"","teamB":"4to Zona \"E\"","phase":"play"},{"venue":"Colon","day":"Domingo 16","court":"Colon","courtNum":"Cancha 3","hora":"18:00","pn":128,"rama":"F","zona":"TP \"L\"","teamA":"3ro Zona \"B\"","teamB":"4to Zona \"C\"","phase":"play"},{"venue":"Gimnasia","day":"Domingo 16","court":"GYE (De Cecco)","courtNum":"Cancha 2","hora":null,"pn":129,"rama":"F","zona":"TP \"N\"","teamA":"3ro Zona \"E\"","teamB":"4to Zona \"B\"","phase":"play"},{"venue":"Gimnasia","day":"Lunes 17","court":"GYE (Basquet)","courtNum":"Cancha 1","hora":"8:00","pn":130,"rama":"M","zona":"TO \"5\"","teamA":"2do Zona \"3\"","teamB":"Perd. Part. N° 116","phase":"play"},{"venue":"Gimnasia","day":"Lunes 17","court":"GYE (Basquet)","courtNum":"Cancha 1","hora":"9:00","pn":131,"rama":"M","zona":"TO \"6\"","teamA":"2do Zona \"4\"\"","teamB":"Perd. Part. N° 117","phase":"play"},{"venue":"Gimnasia","day":"Lunes 17","court":"GYE (Basquet)","courtNum":"Cancha 1","hora":"10:00","pn":132,"rama":"M","zona":"TO \"7\"","teamA":"2do Zona \"1\"","teamB":"Perd. Part. N° 118","phase":"play"},{"venue":"Gimnasia","day":"Lunes 17","court":"GYE (Basquet)","courtNum":"Cancha 1","hora":"11:00","pn":133,"rama":"M","zona":"TO \"8\"","teamA":"2do Zona \"2\"","teamB":"Perd. Part. N° 123","phase":"play"},{"venue":"Gimnasia","day":"Lunes 17","court":"GYE (Basquet)","courtNum":"Cancha 1","hora":"12:00","pn":134,"rama":"M","zona":"TO \"5\"","teamA":"Gan, Part, N° 116","teamB":"2do Zona \"3\"","phase":"play"},{"venue":"Gimnasia","day":"Lunes 17","court":"GYE (Basquet)","courtNum":"Cancha 1","hora":"13:00","pn":135,"rama":"M","zona":"TO \"6\"","teamA":"Gan, Part, N° 117","teamB":"2do Zona \"4\"\"","phase":"play"},{"venue":"Gimnasia","day":"Lunes 17","court":"GYE (De Cecco)","courtNum":"Cancha 2","hora":"8:00","pn":136,"rama":"F","zona":"TO \"G\"","teamA":"2do Zona \"D\"","teamB":"Perd. Part. N° 119","phase":"play"},{"venue":"Gimnasia","day":"Lunes 17","court":"GYE (De Cecco)","courtNum":"Cancha 2","hora":"9:00","pn":137,"rama":"F","zona":"TO \"I\"","teamA":"1ro Zona \"D\"","teamB":"Perd. Part. N° 120","phase":"play"},{"venue":"Gimnasia","day":"Lunes 17","court":"GYE (De Cecco)","courtNum":"Cancha 2","hora":"10:00","pn":138,"rama":"F","zona":"TO \"G\"","teamA":"Gan, Part, N° 119","teamB":"2do Zona \"D\"","phase":"play"},{"venue":"Gimnasia","day":"Lunes 17","court":"GYE (De Cecco)","courtNum":"Cancha 2","hora":"11:00","pn":139,"rama":"F","zona":"TO \"I\"","teamA":"Gan, Part, N° 120","teamB":"1ro Zona \"D\"","phase":"play"},{"venue":"Gimnasia","day":"Lunes 17","court":"GYE (Micro estadio)","courtNum":"Cancha 3","hora":"8:00","pn":140,"rama":"F","zona":"TO \"H\"","teamA":"2do Zona \"A\"","teamB":"Perd. Part. N° 121","phase":"play"},{"venue":"Gimnasia","day":"Lunes 17","court":"GYE (Micro estadio)","courtNum":"Cancha 3","hora":"9:00","pn":141,"rama":"F","zona":"TO \"J\"","teamA":"1ro Zona \"F\"","teamB":"Perd. Part. N° 122","phase":"play"},{"venue":"Gimnasia","day":"Lunes 17","court":"GYE (Micro estadio)","courtNum":"Cancha 3","hora":"10:00","pn":142,"rama":"F","zona":"TO \"H\"","teamA":"Gan, Part, N° 121","teamB":"2do Zona \"A\"","phase":"play"},{"venue":"Gimnasia","day":"Lunes 17","court":"GYE (Micro estadio)","courtNum":"Cancha 3","hora":"11:00","pn":143,"rama":"F","zona":"TO \"J\"","teamA":"Gan, Part, N° 122","teamB":"1ro Zona \"F\"","phase":"play"},{"venue":"Gimnasia","day":"Lunes 17","court":"GYE (Micro estadio)","courtNum":"Cancha 3","hora":null,"pn":144,"rama":"M","zona":"TO \"7\"","teamA":"Gan, Part, N° 118","teamB":"2do Zona \"1\"","phase":"play"},{"venue":"Gimnasia","day":"Lunes 17","court":"GYE (Micro estadio)","courtNum":"Cancha 3","hora":null,"pn":145,"rama":"M","zona":"TO \"8\"","teamA":"Gan, Part, N° 123","teamB":"2do Zona \"2\"","phase":"play"},{"venue":"Villa Dora","day":"Lunes 17","court":"Villa Dora","courtNum":"Cancha 1","hora":"10:00","pn":146,"rama":"F","zona":"TB \"O\"","teamA":"5to Zona \"C\"","teamB":"Perd. Part. N° 124","phase":"play"},{"venue":"Villa Dora","day":"Lunes 17","court":"Villa Dora","courtNum":"Cancha 1","hora":"11:00","pn":147,"rama":"F","zona":"TB \"P\"","teamA":"5to Zona \"F\"","teamB":"Perd. Part. N° 125","phase":"play"},{"venue":"Villa Dora","day":"Lunes 17","court":"Villa Dora","courtNum":"Cancha 1","hora":"12:00","pn":148,"rama":"F","zona":"TB \"O\"","teamA":"Gan, Part, N° 124","teamB":"5to Zona \"C\"","phase":"play"},{"venue":"Villa Dora","day":"Lunes 17","court":"Villa Dora","courtNum":"Cancha 1","hora":"13:00","pn":149,"rama":"F","zona":"TB \"P\"","teamA":"Gan, Part, N° 125","teamB":"5to Zona \"F\"","phase":"play"},{"venue":"Villa Dora","day":"Lunes 17","court":"Villa Dora","courtNum":"Cancha 2","hora":"10:00","pn":150,"rama":"M","zona":"TB \"9\"","teamA":"6to Zona \"1\"","teamB":"6to Zona \"2\"","phase":"play"},{"venue":"Villa Dora","day":"Lunes 17","court":"Villa Dora","courtNum":"Cancha 2","hora":"11:00","pn":151,"rama":"M","zona":"TB \"9\"","teamA":"6to Zona \"2\"","teamB":"6to Zona \"3\"","phase":"play"},{"venue":"Villa Dora","day":"Lunes 17","court":"Villa Dora","courtNum":"Cancha 2","hora":"12:00","pn":152,"rama":"M","zona":"TB \"9\"","teamA":"6to Zona \"1\"","teamB":"6to Zona \"3\"","phase":"play"},{"venue":"Colon","day":"Lunes 17","court":"Colon","courtNum":"Cancha 1","hora":"9:00","pn":153,"rama":"M","zona":"C.P.","teamA":"4to Zona \"1\"","teamB":"5to Zona \"4\"","phase":"play"},{"venue":"Colon","day":"Lunes 17","court":"Colon","courtNum":"Cancha 1","hora":"10:00","pn":154,"rama":"M","zona":"C.P.","teamA":"4to Zona \"2\"","teamB":"5to Zona \"3\"","phase":"play"},{"venue":"Colon","day":"Lunes 17","court":"Colon","courtNum":"Cancha 1","hora":"11:00","pn":155,"rama":"M","zona":"C.P.","teamA":"4to Zona \"3\"","teamB":"5to Zona \"2\"","phase":"play"},{"venue":"Colon","day":"Lunes 17","court":"Colon","courtNum":"Cancha 1","hora":"12:00","pn":156,"rama":"M","zona":"C.P.","teamA":"4to Zona \"4\"","teamB":"5to Zona \"1\"","phase":"play"},{"venue":"Colon","day":"Lunes 17","court":"Colon","courtNum":"Cancha 2","hora":"9:00","pn":157,"rama":"F","zona":"TP \"K\"","teamA":"4to Zona \"D\"","teamB":"Perd. Part. N° 126","phase":"play"},{"venue":"Colon","day":"Lunes 17","court":"Colon","courtNum":"Cancha 2","hora":"10:00","pn":158,"rama":"F","zona":"TP \"M\"","teamA":"3ro Zona \"D\"","teamB":"Perd. Part. N° 127","phase":"play"},{"venue":"Colon","day":"Lunes 17","court":"Colon","courtNum":"Cancha 2","hora":"11:00","pn":159,"rama":"F","zona":"TP \"K\"","teamA":"Gan, Part, N° 126","teamB":"4to Zona \"D\"","phase":"play"},{"venue":"Colon","day":"Lunes 17","court":"Colon","courtNum":"Cancha 2","hora":"12:00","pn":160,"rama":"F","zona":"TP \"M\"","teamA":"Gan, Part, N° 127","teamB":"3ro Zona \"D\"","phase":"play"},{"venue":"Colon","day":"Lunes 17","court":"Colon","courtNum":"Cancha 3","hora":"9:00","pn":161,"rama":"F","zona":"TP \"L\"","teamA":"4to Zona \"A\"","teamB":"Perd. Part. N° 128","phase":"play"},{"venue":"Colon","day":"Lunes 17","court":"Colon","courtNum":"Cancha 3","hora":"10:00","pn":162,"rama":"F","zona":"TP \"N\"","teamA":"3ro Zona \"F\"","teamB":"Perd. Part. N° 129","phase":"play"},{"venue":"Colon","day":"Lunes 17","court":"Colon","courtNum":"Cancha 3","hora":"11:00","pn":163,"rama":"F","zona":"TP \"L\"","teamA":"Gan, Part, N° 128","teamB":"4to Zona \"A\"","phase":"play"},{"venue":"Colon","day":"Lunes 17","court":"Colon","courtNum":"Cancha 3","hora":"12:00","pn":164,"rama":"F","zona":"TP \"N\"","teamA":"Gan, Part, N° 129","teamB":"3ro Zona \"F\"","phase":"play"},{"venue":"Gimnasia","day":"Domingo 16","court":"Colon","courtNum":"Cancha 3","hora":"16:00","pn":165,"rama":"M","zona":"Sem 1","teamA":"Gan. Zona \"5\"","teamB":"Gan. Zona \"7\"","phase":"semi"},{"venue":"Gimnasia","day":"Domingo 16","court":"Colon","courtNum":"Cancha 3","hora":null,"pn":166,"rama":"F","zona":"Sem 1","teamA":"Gan. Zona \"G\"","teamB":"Gan. Zona \"H\"","phase":"semi"},{"venue":"Gimnasia","day":"Domingo 16","court":"Colon","courtNum":"Cancha 3","hora":"16:00","pn":167,"rama":"F","zona":"Sem 2","teamA":"Gan. Zona \"I\"","teamB":"Gan. Zona \"J\"","phase":"semi"},{"venue":"Gimnasia","day":"Domingo 16","court":"Colon","courtNum":"Cancha 3","hora":"16:00","pn":168,"rama":"M","zona":"Sem 2","teamA":"Gan. Zona \"6\"","teamB":"Gan. Zona \"8\"","phase":"semi"},{"venue":"Villa Dora","day":"Domingo 16","court":"Colon","courtNum":"Cancha 3","hora":"15:00","pn":169,"rama":"F","zona":"Final","teamA":"Gan. Zona \"O\"","teamB":"Gan. Zona \"P\"","phase":"final"},{"venue":"Colon","day":"Lunes 17","court":"Colon","courtNum":"Cancha 1","hora":"13:00","pn":170,"rama":"M","zona":"C.P.","teamA":"Gan. Par. 153","teamB":"Gan. Par. 154","phase":"play"},{"venue":"Colon","day":"Lunes 17","court":"Colon","courtNum":"Cancha 1","hora":"14:00","pn":171,"rama":"M","zona":"C.P.","teamA":"Gan. Par. 155","teamB":"Gan. Par. 156","phase":"play"},{"venue":"Colon","day":"Lunes 17","court":"Colon","courtNum":"Cancha 2","hora":"14:00","pn":172,"rama":"F","zona":"Semi 1","teamA":"Gan. Zona \"K\"","teamB":"Gan. Zona \"L\"","phase":"semi"},{"venue":"Colon","day":"Lunes 17","court":"Colon","courtNum":"Cancha 3","hora":"14:00","pn":173,"rama":"F","zona":"Semi 2","teamA":"Gan. Zona \"M\"","teamB":"Gan. Zona \"N\"","phase":"semi"},{"venue":"Colon","day":"Lunes 17","court":"Colon","courtNum":"Cancha 1","hora":"16:00","pn":174,"rama":"M","zona":"Final","teamA":"Gan. Par. 170","teamB":"Gan. Par. 171","phase":"final"},{"venue":"Colon","day":"Lunes 17","court":"Colon","courtNum":"Cancha 2","hora":"16:00","pn":175,"rama":"F","zona":"Final","teamA":"Gan. Par. 172","teamB":"Gan. Par. 173","phase":"final"},{"venue":"Gimnasia","day":"Domingo 16","court":"Colon","courtNum":"Cancha 3","hora":"18:00","pn":176,"rama":"M","zona":"Final","teamA":"Gan. Par. 165","teamB":"Gan. Par. 168","phase":"final"},{"venue":"Gimnasia","day":"Domingo 16","court":"Colon","courtNum":"Cancha 3","hora":"18:00","pn":177,"rama":"F","zona":"Final","teamA":"Gan. Par. 166","teamB":"Gan. Par. 167","phase":"final"}];
 
+// ================== CONFIG ==================
+const ADMIN_PIN = 'cbr2026';          // PIN para cargar resultados (cambiable)
+const FIREBASE_CONFIG = null;          // Pegá acá la config de Firebase para modo COMPARTIDO EN VIVO
+
+// ================== CONSTANTES ==================
 const BANCO = 'Banco Rep. UY';
 const DAYS = ['Sabado 15','Domingo 16','Lunes 17'];
 const DAYLABEL = {'Sabado 15':'Sábado 15 de febrero','Domingo 16':'Domingo 16 de febrero','Lunes 17':'Lunes 17 de febrero'};
 const PHASE = {group:'Fase de grupos', play:'Playoffs', semi:'Semifinal', final:'Final'};
 const M = window.MATCHES.map((m,i)=>({...m, id:i, isBanco:(m.teamA===BANCO||m.teamB===BANCO)}));
-
+const byPN = {}; M.forEach(m=>byPN[m.pn]=m);
 const state = {day:'all', rama:'all', venue:'all', zona:'all', search:'', onlyBanco:false};
 
-// ---- helpers ----
-const isPlaceholder = t => /Zona|Part|Gan|Perd|^TP |^TO |^TB |^C\.P|Semi|Final|^Sem/i.test(t);
+// ================== MOTOR DE AVANCE ==================
+function keyToken(zona){ const m=String(zona).match(/"([^"]+)"/); return m?m[1]:null; }
+const gzc = z => String(z).replace(/"/g,'').trim();
+const triByToken = {};
+M.filter(m=>m.phase!=='group').forEach(m=>{ const t=keyToken(m.zona); if(!t)return; const k=m.rama+'|'+t; (triByToken[k]=triByToken[k]||[]).push(m); });
+function refType(t){
+  t=String(t);
+  if(/^Gan[.,]?\s*Part[.,]?\s*N°\s*\d+/i.test(t)) return {type:'GAN_PART', n:+t.match(/(\d+)/)[0]};
+  if(/^Perd[.,]?\s*Part[.,]?\s*N°\s*\d+/i.test(t)) return {type:'PERD_PART', n:+t.match(/(\d+)/)[0]};
+  if(/^Gan\.?\s*Par\.?\s*\d+/i.test(t)) return {type:'GAN_PAR', n:+t.match(/(\d+)/)[0]};
+  if(/^Gan\.?\s*Zona\s*"?/i.test(t)) return {type:'GAN_ZONA', tok:keyToken(t)};
+  const pm=t.match(/^(1ro|2do|3ro|4to|5to|6to)\s+Zona\s*"*([A-Za-z0-9]+)"*\s*$/i);
+  if(pm){ const map={'1ro':1,'2do':2,'3ro':3,'4to':4,'5to':5,'6to':6}; return {type:'POS', pos:map[pm[1].toLowerCase()], zona:pm[2].trim().replace(/"/g,'')}; }
+  return {type:'REAL'};
+}
+function makeResolver(results, overrides){
+  overrides=overrides||{};
+  function outcome(pn){
+    const r=results[pn]; if(!r||r.a==null||r.b==null||r.a===r.b) return null;
+    const m=byPN[pn]; const A=R(m.teamA,m.rama), B=R(m.teamB,m.rama);
+    if(!A||!B) return null;
+    return r.a>r.b ? {win:A,lose:B} : {win:B,lose:A};
+  }
+  function tableFrom(list, rama){
+    const teams={}; const add=t=>{ if(t) teams[t]=teams[t]||{t,w:0,l:0,sf:0,sc:0,pj:0}; };
+    list.forEach(x=>{ add(R(x.teamA,rama)); add(R(x.teamB,rama)); });
+    list.forEach(x=>{ const r=results[x.pn]; if(!r||r.a==null||r.b==null)return; const A=R(x.teamA,rama),B=R(x.teamB,rama); if(!A||!B)return;
+      const a=teams[A],b=teams[B]; a.sf+=r.a;a.sc+=r.b;b.sf+=r.b;b.sc+=r.a;a.pj++;b.pj++;
+      if(r.a>r.b){a.w++;b.l++;}else{b.w++;a.l++;} });
+    return Object.values(teams).sort((x,y)=> y.w-x.w || (y.sf-y.sc)-(x.sf-x.sc) || y.sf-x.sf || String(x.t).localeCompare(String(y.t)));
+  }
+  function groupMatches(rama, zona){ return M.filter(x=>x.phase==='group'&&x.rama===rama&&gzc(x.zona)===zona); }
+  function groupComplete(rama, zona){ const ms=groupMatches(rama,zona); return ms.length>0 && ms.every(x=>{const r=results[x.pn];return r&&r.a!=null&&r.b!=null;}); }
+  function groupStanding(rama, zona){
+    const key=rama+'|'+zona; if(overrides[key]) return overrides[key];
+    return tableFrom(groupMatches(rama,zona), rama).map(o=>o.t);
+  }
+  function triWinner(rama, tok){
+    const ms=triByToken[rama+'|'+tok]||[]; if(!ms.length) return null;
+    const done=ms.every(x=>{const r=results[x.pn];return r&&r.a!=null&&r.b!=null;});
+    if(!done) return null;
+    const tbl=tableFrom(ms, rama); return tbl.length?tbl[0].t:null;
+  }
+  function R(ref, rama, depth){
+    depth=depth||0;
+    if(depth>60||ref==null) return null;
+    const info=refType(ref);
+    if(info.type==='REAL') return ref;
+    if(info.type==='GAN_PART'){ const o=outcome(info.n); return o?o.win:null; }
+    if(info.type==='PERD_PART'){ const o=outcome(info.n); return o?o.lose:null; }
+    if(info.type==='GAN_PAR'){ const o=outcome(info.n); return o?o.win:null; }
+    if(info.type==='GAN_ZONA'){ return triWinner(rama, info.tok); }
+    if(info.type==='POS'){ const r=/^[A-F]$/i.test(info.zona)?'F':'M'; const z=info.zona.toUpperCase(); if(!groupComplete(r,z)) return null; return groupStanding(r, z)[info.pos-1]||null; }
+    return ref;
+  }
+  return {R, outcome, groupStanding, triWinner, tableFrom, groupComplete};
+}
+
+// ================== STORE (resultados + sync) ==================
+const Store = {
+  results:{}, overrides:{}, editMode:false, fb:null, online:false,
+  _res(){ return makeResolver(this.results, this.overrides); },
+  load(){ try{ const raw=localStorage.getItem('cbr_results'); if(raw) this.results=JSON.parse(raw)||{}; }catch(e){} },
+  saveLocal(){ try{ localStorage.setItem('cbr_results', JSON.stringify(this.results)); }catch(e){} },
+  setResult(pn, a, b){
+    if(a===''||b===''||a==null||b==null){ delete this.results[pn]; }
+    else { this.results[pn]={a:+a, b:+b}; }
+    this.saveLocal();
+    if(this.fb){ try{ this.fb.ref('resultados/'+pn).set(this.results[pn]||null); }catch(e){} }
+    rerenderAll();
+  },
+  initFirebase(){
+    if(!FIREBASE_CONFIG || typeof firebase==='undefined') return;
+    try{
+      firebase.initializeApp(FIREBASE_CONFIG);
+      this.fb = firebase.database();
+      this.fb.ref('resultados').on('value', snap=>{
+        const v=snap.val()||{}; this.results={};
+        Object.keys(v).forEach(k=>{ if(v[k]) this.results[k]=v[k]; });
+        this.saveLocal(); this.online=true; rerenderAll(); updateAdminStatus();
+      });
+    }catch(e){ console.warn('Firebase off', e); }
+  }
+};
+
+// ================== HELPERS DE VISTA ==================
 function hnum(h){ if(!h) return 999; return parseInt(h); }
+function prettyRef(ref){
+  const i=refType(ref);
+  if(i.type==='GAN_PART'||i.type==='GAN_PAR') return 'Ganador P.'+i.n;
+  if(i.type==='PERD_PART') return 'Perdedor P.'+i.n;
+  if(i.type==='GAN_ZONA') return 'Ganador Llave '+i.tok;
+  if(i.type==='POS'){ const o={1:'1º',2:'2º',3:'3º',4:'4º',5:'5º',6:'6º'}[i.pos]; return o+' Zona '+i.zona; }
+  return ref;
+}
+function shortBanco(name){ return name===BANCO ? 'Banco República' : name; }
 function zonaLabel(m){
   if(m.phase==='group') return 'Zona '+m.zona;
   if(m.phase==='final') return 'Final';
   if(m.phase==='semi') return 'Semifinal';
   return m.zona||'Playoff';
 }
-function teamHTML(name){
-  const b = name===BANCO;
-  return '<span class="t'+(b?' team-banco':'')+'">'+name+'</span>';
+function slot(ref, rama, R){
+  const resolved = R(ref, rama);
+  if(resolved){ return {name:shortBanco(resolved), real:resolved, isBanco:resolved===BANCO, pending:false}; }
+  return {name:prettyRef(ref), real:null, isBanco:false, pending:true};
 }
-function cardHTML(m){
-  return '<div class="card'+(m.isBanco?' banco':'')+'">'+
+
+// tarjeta de partido (fixture y mi equipo)
+function cardHTML(m, R){
+  const A=slot(m.teamA, m.rama, R), B=slot(m.teamB, m.rama, R);
+  const banco = A.isBanco||B.isBanco;
+  const r=Store.results[m.pn];
+  const hasScore = r && r.a!=null && r.b!=null;
+  const aWin = hasScore && r.a>r.b, bWin = hasScore && r.b>r.a;
+  const teamSpan=(s,win)=>'<span class="t'+(s.isBanco?' team-banco':'')+(s.pending?' pending':'')+(win?' win':'')+'">'+s.name+'</span>';
+  let mid;
+  if(Store.editMode){
+    mid='<div class="scoreEdit">'+teamSpan(A,aWin)+
+        '<span class="scin"><input class="sc-in" type="number" min="0" max="5" inputmode="numeric" data-pn="'+m.pn+'" data-side="a" value="'+(hasScore?r.a:'')+'">'+
+        '<b>-</b><input class="sc-in" type="number" min="0" max="5" inputmode="numeric" data-pn="'+m.pn+'" data-side="b" value="'+(hasScore?r.b:'')+'"></span>'+
+        teamSpan(B,bWin)+'</div>';
+  } else if(hasScore){
+    mid='<div class="matchup">'+teamSpan(A,aWin)+'<span class="score">'+r.a+'<span class="dash">-</span>'+r.b+'</span>'+teamSpan(B,bWin)+'</div>';
+  } else {
+    mid='<div class="matchup">'+teamSpan(A,false)+'<span class="vs">vs</span>'+teamSpan(B,false)+'</div>';
+  }
+  return '<div class="card'+(banco?' banco':'')+(hasScore?' played':'')+'" data-pn="'+m.pn+'">'+
     '<div class="time"><div class="h">'+(m.hora||'—')+'</div><div class="pn">Nº '+(m.pn||'—')+'</div></div>'+
-    '<div class="body">'+
-      '<div class="matchup">'+teamHTML(m.teamA)+'<span class="vs">vs</span>'+teamHTML(m.teamB)+'</div>'+
+    '<div class="body">'+mid+
       '<div class="tags">'+
         '<span class="tag venue">'+m.venue+(m.court?' · '+m.court:'')+'</span>'+
         '<span class="tag rama-'+m.rama+'">'+(m.rama==='M'?'Masc':'Fem')+'</span>'+
@@ -238,22 +450,22 @@ function cardHTML(m){
     '</div></div>';
 }
 
-// ---- filtering ----
+// ================== FIXTURE ==================
 function applyFilters(){
   const s = state.search.trim().toLowerCase();
-  let out = M.filter(m=>{
+  const R = Store._res().R;
+  return M.filter(m=>{
     if(state.day!=='all' && m.day!==state.day) return false;
     if(state.rama!=='all' && m.rama!==state.rama) return false;
     if(state.venue!=='all' && m.venue!==state.venue) return false;
     if(state.zona!=='all' && m.zona!==state.zona) return false;
-    if(state.onlyBanco && !m.isBanco) return false;
-    if(s && !(m.teamA.toLowerCase().includes(s)||m.teamB.toLowerCase().includes(s))) return false;
+    if(state.onlyBanco && !(slot(m.teamA,m.rama,R).isBanco||slot(m.teamB,m.rama,R).isBanco)) return false;
+    if(s){ const na=(slot(m.teamA,m.rama,R).name+' '+m.teamA).toLowerCase(), nb=(slot(m.teamB,m.rama,R).name+' '+m.teamB).toLowerCase(); if(!na.includes(s)&&!nb.includes(s)) return false; }
     return true;
   });
-  return out;
 }
 function renderList(){
-  const out = applyFilters();
+  const out = applyFilters(); const R=Store._res().R;
   const el = document.getElementById('list');
   document.getElementById('count').textContent = out.length+' partido'+(out.length!==1?'s':'')+' encontrado'+(out.length!==1?'s':'');
   if(!out.length){ el.innerHTML='<div class="empty">No hay partidos con estos filtros.<br>Probá quitar alguno.</div>'; return; }
@@ -263,92 +475,145 @@ function renderList(){
     if(!dm.length) continue;
     html+='<div class="daygroup"><div class="dayhdr"><span class="dchip">'+day.replace('Sabado','Sábado')+'</span>'+
       '<span class="dsub">'+dm.length+' partidos</span><span class="dline"></span></div>';
-    html+= dm.map(cardHTML).join('');
-    html+='</div>';
+    html+= dm.map(m=>cardHTML(m,R)).join(''); html+='</div>';
   }
   el.innerHTML=html;
 }
 
-// ---- hero (próximo partido Banco) ----
-function bancoMatches(){
-  return M.filter(m=>m.isBanco).sort((a,b)=> DAYS.indexOf(a.day)-DAYS.indexOf(b.day) || hnum(a.hora)-hnum(b.hora));
-}
+// ================== HERO / BANCO ==================
+function bancoMatches(){ return M.filter(m=>m.isBanco).sort((a,b)=> DAYS.indexOf(a.day)-DAYS.indexOf(b.day) || hnum(a.hora)-hnum(b.hora)); }
 function heroHTML(){
-  const bm = bancoMatches();
-  const next = bm[0];
-  if(!next) return '';
+  const bm = bancoMatches(); const next = bm.find(m=>!Store.results[m.pn]) || bm[0]; if(!next) return '';
   const rival = next.teamA===BANCO?next.teamB:next.teamA;
   return '<span class="pill">PRÓXIMO PARTIDO · BANCO REPÚBLICA</span>'+
     '<h2>Nuestro debut</h2>'+
     '<div class="next">'+bm.length+' partidos de fase de grupos · Zona '+next.zona+' Masculino</div>'+
-    '<div class="nextcard">'+
-      '<div class="teams">Banco República <span class="vs">vs</span> '+rival+'</div>'+
-      '<div class="meta"><b>'+DAYLABEL[next.day].split(' de ')[0]+' · '+next.hora+'</b><br>'+next.venue+' — '+next.court+'</div>'+
-    '</div>';
+    '<div class="nextcard"><div class="teams">Banco República <span class="vs">vs</span> '+rival+'</div>'+
+    '<div class="meta"><b>'+DAYLABEL[next.day].split(' de ')[0]+' · '+(next.hora||'s/h')+'</b><br>'+next.venue+' — '+next.court+'</div></div>';
 }
-
-// ---- zonas view ----
-function buildZonas(){
-  const zones = {};
-  M.filter(m=>m.phase==='group').forEach(m=>{
-    const k = m.rama+'|'+m.zona;
-    zones[k] = zones[k] || {rama:m.rama, zona:m.zona, teams:new Set()};
-    // en fase de grupos todos los equipos son reales
-    zones[k].teams.add(m.teamA);
-    zones[k].teams.add(m.teamB);
-  });
-  const render = (rama, elId)=>{
-    const keys = Object.keys(zones).filter(k=>zones[k].rama===rama).sort();
-    document.getElementById(elId).innerHTML = keys.map(k=>{
-      const z = zones[k];
-      const teams = [...z.teams].sort();
-      return '<div class="zcard '+rama+'"><div class="zh"><span>Zona '+z.zona+'</span><span class="cnt">'+teams.length+' equipos</span></div>'+
-        '<ul>'+teams.map(t=>'<li'+(t===BANCO?' class="banco"':'')+'><span class="dot"></span>'+(t===BANCO?'Banco República ⭐':t)+'</li>').join('')+'</ul></div>';
-    }).join('');
-  };
-  render('M','zonasM');
-  render('F','zonasF');
-}
-
-// ---- banco view ----
 function buildBanco(){
-  const bm = bancoMatches();
+  const bm = bancoMatches(); const R=Store._res().R;
   document.getElementById('bancoCount').textContent = '· '+bm.length+' partidos';
   document.getElementById('heroBanco').innerHTML = heroHTML();
-  const byDay = DAYS.map(day=>{
-    const dm = bm.filter(m=>m.day===day);
-    if(!dm.length) return '';
-    return '<div class="daygroup"><div class="dayhdr"><span class="dchip">'+day.replace('Sabado','Sábado')+'</span><span class="dline"></span></div>'+
-      dm.map(cardHTML).join('')+'</div>';
+  const byDay = DAYS.map(day=>{ const dm = bm.filter(m=>m.day===day); if(!dm.length) return '';
+    return '<div class="daygroup"><div class="dayhdr"><span class="dchip">'+day.replace('Sabado','Sábado')+'</span><span class="dline"></span></div>'+dm.map(m=>cardHTML(m,R)).join('')+'</div>';
   }).join('');
   document.getElementById('bancoList').innerHTML = byDay || '<div class="empty">Sin partidos cargados.</div>';
 }
 
-// ---- wire up ----
-function initFilters(){
-  const venues = [...new Set(M.map(m=>m.venue))];
-  const fv = document.getElementById('fVenue');
-  venues.forEach(v=>{ const o=document.createElement('option'); o.value=v; o.textContent=v; fv.appendChild(o); });
-  const fz = document.getElementById('fZona');
-  const zonas = [...new Set(M.map(m=>m.zona))].filter(Boolean).sort((a,b)=>{
-    const na=parseInt(a),nb=parseInt(b);
-    if(!isNaN(na)&&!isNaN(nb))return na-nb;
-    return String(a).localeCompare(String(b));
-  });
-  zonas.forEach(z=>{ const o=document.createElement('option'); o.value=z; o.textContent='Zona '+z; fz.appendChild(o); });
+// ================== ZONAS ==================
+function buildZonas(){
+  const zones = {};
+  M.filter(m=>m.phase==='group').forEach(m=>{ const k=m.rama+'|'+m.zona; zones[k]=zones[k]||{rama:m.rama,zona:m.zona,teams:new Set()}; zones[k].teams.add(m.teamA); zones[k].teams.add(m.teamB); });
+  const res=Store._res();
+  const render=(rama,elId)=>{
+    const keys=Object.keys(zones).filter(k=>zones[k].rama===rama).sort();
+    document.getElementById(elId).innerHTML=keys.map(k=>{
+      const z=zones[k]; const st=res.groupStanding(rama, gzc(z.zona));
+      const anyScore = M.some(x=>x.phase==='group'&&x.rama===rama&&gzc(x.zona)===gzc(z.zona)&&Store.results[x.pn]);
+      const list = anyScore ? st : [...z.teams].sort();
+      return '<div class="zcard '+rama+'"><div class="zh"><span>Zona '+z.zona+'</span><span class="cnt">'+list.length+' equipos</span></div>'+
+        '<ul>'+list.map((t,i)=>'<li'+(t===BANCO?' class="banco"':'')+'>'+(anyScore?'<span class="posn">'+(i+1)+'</span>':'<span class="dot"></span>')+(t===BANCO?'Banco República ⭐':t)+'</li>').join('')+'</ul>'+
+        (anyScore?'<div class="ztip">Orden por victorias y dif. de sets</div>':'')+'</div>';
+    }).join('');
+  };
+  render('M','zonasM'); render('F','zonasF');
+}
 
-  document.querySelectorAll('#segDay button').forEach(b=>b.onclick=()=>{
-    document.querySelectorAll('#segDay button').forEach(x=>x.classList.remove('on')); b.classList.add('on');
-    state.day=b.dataset.day; renderList();
-  });
-  document.querySelectorAll('#segRama button').forEach(b=>b.onclick=()=>{
-    document.querySelectorAll('#segRama button').forEach(x=>x.classList.remove('on')); b.classList.add('on');
-    state.rama=b.dataset.rama; renderList();
-  });
-  fv.onchange=()=>{ state.venue=fv.value; renderList(); };
-  fz.onchange=()=>{ state.zona=fz.value; renderList(); };
-  document.getElementById('fSearch').oninput=e=>{ state.search=e.target.value; renderList(); };
-  document.getElementById('onlyBanco').onchange=e=>{ state.onlyBanco=e.target.checked; renderList(); };
+// ================== PLAYOFFS (CUADRO) ==================
+const CUADROS = {
+  M:[
+    {key:'oro', label:'🥇 Cuadro de Oro', tris:['5','6','7','8'], semis:[165,168], final:176},
+    {key:'plata', label:'🥈 Cuadro de Plata', cp:[153,154,155,156], semis:[170,171], final:174},
+    {key:'bronce', label:'🥉 Cuadro de Bronce', tris:['9'], semis:[], final:null}
+  ],
+  F:[
+    {key:'oro', label:'🥇 Cuadro de Oro', tris:['G','H','I','J'], semis:[166,167], final:177},
+    {key:'plata', label:'🥈 Cuadro de Plata', tris:['K','L','M','N'], semis:[172,173], final:175},
+    {key:'bronce', label:'🥉 Cuadro de Bronce', tris:['O','P'], semis:[], final:169}
+  ]
+};
+function poMatchMini(m, R){
+  const A=slot(m.teamA,m.rama,R), B=slot(m.teamB,m.rama,R);
+  const r=Store.results[m.pn]; const has=r&&r.a!=null&&r.b!=null;
+  const aw=has&&r.a>r.b, bw=has&&r.b>r.a;
+  const nm=(s,w)=>'<span class="'+(s.isBanco?'pb ':'')+(s.pending?'pend ':'')+(w?'w':'')+'">'+s.name+'</span>';
+  return '<div class="pom'+(has?' done':'')+'"><span class="pnn">'+m.pn+'</span>'+nm(A,aw)+
+    (has?'<span class="pr">'+r.a+'-'+r.b+'</span>':'<span class="pv">vs</span>')+nm(B,bw)+'</div>';
+}
+function buildPlayoffs(){
+  const R=Store._res().R, res=Store._res();
+  let html='';
+  for(const rama of ['M','F']){
+    html+='<div class="po-rama"><div class="po-ramahdr">'+(rama==='M'?'Masculino':'Femenino')+'</div>';
+    for(const c of CUADROS[rama]){
+      html+='<div class="po-cuadro '+c.key+'"><div class="po-clabel">'+c.label+'</div>';
+      if(c.tris){
+        html+='<div class="po-tris">';
+        for(const tok of c.tris){
+          const ms=(triByToken[rama+'|'+tok]||[]).slice().sort((a,b)=>a.pn-b.pn);
+          const win=res.triWinner(rama,tok);
+          html+='<div class="po-tri"><div class="po-trih">Llave '+tok+'</div>'+
+            ms.map(m=>poMatchMini(m,R)).join('')+
+            '<div class="po-triw">'+(win?'🏅 '+shortBanco(win):'<span class="pend">Ganador a definir</span>')+'</div></div>';
+        }
+        html+='</div>';
+      }
+      if(c.cp){
+        html+='<div class="po-tris">'+c.cp.map(pn=>{const m=byPN[pn];return '<div class="po-tri"><div class="po-trih">Cruce</div>'+poMatchMini(m,R)+'</div>';}).join('')+'</div>';
+      }
+      if(c.semis&&c.semis.length){
+        html+='<div class="po-round"><div class="po-rlabel">Semifinales</div>'+c.semis.map(pn=>poMatchMini(byPN[pn],R)).join('')+'</div>';
+      }
+      if(c.final){
+        const fm=byPN[c.final]; const r=Store.results[fm.pn]; const has=r&&r.a!=null&&r.b!=null;
+        const champ = has ? (r.a>r.b?R(fm.teamA,rama):R(fm.teamB,rama)) : null;
+        html+='<div class="po-round final"><div class="po-rlabel">🏆 Final</div>'+poMatchMini(fm,R)+
+          (champ?'<div class="po-champ">🏆 Campeón: <b>'+shortBanco(champ)+'</b></div>':'')+'</div>';
+      }
+      html+='</div>';
+    }
+    html+='</div>';
+  }
+  document.getElementById('poGrid').innerHTML=html;
+}
+
+// ================== EDITOR / PIN ==================
+function openPin(){ document.getElementById('pinModal').classList.add('show'); document.getElementById('pinErr').textContent=''; document.getElementById('pinInput').value=''; setTimeout(()=>document.getElementById('pinInput').focus(),50); }
+function closePin(){ document.getElementById('pinModal').classList.remove('show'); }
+function tryPin(){
+  const v=document.getElementById('pinInput').value.trim();
+  if(v===ADMIN_PIN){ Store.editMode=true; closePin(); updateAdminStatus(); rerenderAll(); }
+  else { document.getElementById('pinErr').textContent='PIN incorrecto'; }
+}
+function exitEdit(){ Store.editMode=false; updateAdminStatus(); rerenderAll(); }
+function updateAdminStatus(){
+  const b=document.getElementById('adminBtn'); const st=document.getElementById('adminStatus');
+  if(Store.editMode){ b.textContent='✅ Terminar carga'; b.classList.add('on'); }
+  else { b.textContent='🔒 Cargar resultados'; b.classList.remove('on'); }
+  const mode = FIREBASE_CONFIG ? (Store.online?'🟢 En vivo (compartido)':'🟡 Conectando…') : '🟠 Local (este dispositivo)';
+  st.textContent = mode;
+}
+
+// ================== RERENDER GLOBAL ==================
+function rerenderAll(){
+  document.getElementById('hero').innerHTML = heroHTML();
+  renderList(); buildZonas(); buildBanco(); buildPlayoffs();
+  document.body.classList.toggle('editing', Store.editMode);
+}
+
+// ================== WIRE UP ==================
+function initFilters(){
+  const fv=document.getElementById('fVenue'); [...new Set(M.map(m=>m.venue))].forEach(v=>{const o=document.createElement('option');o.value=v;o.textContent=v;fv.appendChild(o);});
+  const fz=document.getElementById('fZona');
+  const zonas=[...new Set(M.map(m=>m.zona))].filter(Boolean).sort((a,b)=>{const na=parseInt(a),nb=parseInt(b);if(!isNaN(na)&&!isNaN(nb))return na-nb;return String(a).localeCompare(String(b));});
+  zonas.forEach(z=>{const o=document.createElement('option');o.value=z;o.textContent='Zona '+z;fz.appendChild(o);});
+  document.querySelectorAll('#segDay button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#segDay button').forEach(x=>x.classList.remove('on'));b.classList.add('on');state.day=b.dataset.day;renderList();});
+  document.querySelectorAll('#segRama button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#segRama button').forEach(x=>x.classList.remove('on'));b.classList.add('on');state.rama=b.dataset.rama;renderList();});
+  fv.onchange=()=>{state.venue=fv.value;renderList();};
+  fz.onchange=()=>{state.zona=fz.value;renderList();};
+  document.getElementById('fSearch').oninput=e=>{state.search=e.target.value;renderList();};
+  document.getElementById('onlyBanco').onchange=e=>{state.onlyBanco=e.target.checked;renderList();};
 }
 function initTabs(){
   document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{
@@ -358,13 +623,26 @@ function initTabs(){
     window.scrollTo({top:0,behavior:'smooth'});
   });
 }
+document.addEventListener('input', e=>{
+  const el=e.target; if(!el.classList||!el.classList.contains('sc-in')) return;
+  const card=el.closest('.card'); if(!card) return;
+  const pn=el.dataset.pn;
+  const a=card.querySelector('.sc-in[data-side="a"]').value;
+  const b=card.querySelector('.sc-in[data-side="b"]').value;
+  if(a!==''&&b!==''){ Store.setResult(pn,a,b); }
+  else if(a===''&&b===''){ Store.setResult(pn,'',''); }
+});
 
-document.getElementById('hero').innerHTML = heroHTML();
-initFilters();
-initTabs();
-buildZonas();
-buildBanco();
-renderList();
+// init
+Store.load();
+document.getElementById('adminBtn').onclick=()=>{ if(Store.editMode) exitEdit(); else openPin(); };
+document.getElementById('pinOk').onclick=tryPin;
+document.getElementById('pinCancel').onclick=closePin;
+document.getElementById('pinInput').addEventListener('keydown',e=>{ if(e.key==='Enter') tryPin(); });
+initFilters(); initTabs(); updateAdminStatus();
+Store.initFirebase();
+rerenderAll();
+
 </script>
 </body>
 </html>
