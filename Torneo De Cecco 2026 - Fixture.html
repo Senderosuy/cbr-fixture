@@ -198,6 +198,24 @@
   .pom .pb{color:var(--red);font-weight:800}
   .pom .pend{color:var(--muted);font-style:italic}
   .pom.done{background:#f6fbf7}
+  /* override manual: picker de ganador de llave */
+  .po-triw.edit{background:#fff8e6;border:1px dashed #e6c86b;border-radius:8px;padding:7px;margin-top:8px}
+  .po-triw .pklbl{display:block;font-size:11px;color:var(--navy2);font-weight:700;margin-bottom:5px}
+  .po-triw .tie{display:block;font-size:11.5px;color:#b3540a;font-weight:800;margin-bottom:5px}
+  .tri-pick-row{display:flex;flex-wrap:wrap;gap:5px}
+  .tri-pick{background:#fff;border:1.5px solid var(--blue);color:var(--navy);border-radius:7px;padding:5px 9px;font-size:12px;font-weight:700;cursor:pointer}
+  .tri-pick:hover{background:var(--sky)}
+  .tri-pick.sel{background:var(--ok);border-color:var(--ok);color:#fff}
+  .tri-auto{background:var(--sky);border:0;color:var(--navy2);border-radius:7px;padding:5px 9px;font-size:11.5px;font-weight:700;cursor:pointer}
+  .tri-hint{font-size:11px;color:var(--muted);font-style:italic}
+  .manbadge{font-size:9.5px;background:var(--gold);color:var(--navy);padding:1px 5px;border-radius:5px;font-weight:800;vertical-align:middle}
+  /* reordenar tabla de zona */
+  .zcard li .znm{flex:1;min-width:0}
+  .zmove{margin-left:auto;display:inline-flex;gap:3px;flex:none}
+  .zmove button{width:24px;height:24px;border:1px solid var(--line);background:#fff;border-radius:6px;font-size:10px;color:var(--navy);cursor:pointer;line-height:1;padding:0}
+  .zmove button:hover:not(:disabled){background:var(--sky)}
+  .zmove button:disabled{opacity:.3;cursor:default}
+  .ztip .zauto{background:none;border:0;color:var(--blue);font-size:10.5px;font-weight:700;cursor:pointer;text-decoration:underline;padding:0}
 
 </style>
 </head>
@@ -300,7 +318,15 @@ window.MATCHES = [{"venue":"Gimnasia","day":"Sabado 15","court":"GYE (Basquet)",
 
 // ================== CONFIG ==================
 const ADMIN_PIN = 'cbr2026';          // PIN para cargar resultados (cambiable)
-const FIREBASE_CONFIG = null;          // Pegá acá la config de Firebase para modo COMPARTIDO EN VIVO
+const FIREBASE_CONFIG = {              // Config de Firebase — modo COMPARTIDO EN VIVO
+  apiKey: "AIzaSyD3GnXAk6OgxWEA_gGX0ASB5MjKNEeh9cE",
+  authDomain: "cbr-fixture.firebaseapp.com",
+  databaseURL: "https://cbr-fixture-default-rtdb.firebaseio.com",
+  projectId: "cbr-fixture",
+  storageBucket: "cbr-fixture.firebasestorage.app",
+  messagingSenderId: "71716369269",
+  appId: "1:71716369269:web:17cad2f833c1f4dffa593c"
+};
 
 // ================== CONSTANTES ==================
 const BANCO = 'Banco Rep. UY';
@@ -345,10 +371,21 @@ function makeResolver(results, overrides){
   function groupMatches(rama, zona){ return M.filter(x=>x.phase==='group'&&x.rama===rama&&gzc(x.zona)===zona); }
   function groupComplete(rama, zona){ const ms=groupMatches(rama,zona); return ms.length>0 && ms.every(x=>{const r=results[x.pn];return r&&r.a!=null&&r.b!=null;}); }
   function groupStanding(rama, zona){
-    const key=rama+'|'+zona; if(overrides[key]) return overrides[key];
-    return tableFrom(groupMatches(rama,zona), rama).map(o=>o.t);
+    const key=rama+'|'+zona;
+    const auto=tableFrom(groupMatches(rama,zona), rama).map(o=>o.t);
+    const ov=overrides.groupOrder&&overrides.groupOrder[key];
+    if(ov&&ov.length){ const set=new Set(ov); return ov.filter(t=>auto.includes(t)).concat(auto.filter(t=>!set.has(t))); }
+    return auto;
+  }
+  function triParts(rama, tok){ const ms=triByToken[rama+'|'+tok]||[]; const p=[]; ms.forEach(m=>[m.teamA,m.teamB].forEach(ref=>{const t=R(ref,rama); if(t&&!p.includes(t))p.push(t);})); return p; }
+  function triTie(rama, tok){
+    const ms=triByToken[rama+'|'+tok]||[]; if(!ms.length) return false;
+    if(!ms.every(x=>{const r=results[x.pn];return r&&r.a!=null&&r.b!=null;})) return false;
+    const tbl=tableFrom(ms, rama); if(tbl.length<2) return false;
+    return tbl[0].w===tbl[1].w && (tbl[0].sf-tbl[0].sc)===(tbl[1].sf-tbl[1].sc);
   }
   function triWinner(rama, tok){
+    const ov=overrides.triWin&&overrides.triWin[rama+'|'+tok]; if(ov) return ov;
     const ms=triByToken[rama+'|'+tok]||[]; if(!ms.length) return null;
     const done=ms.every(x=>{const r=results[x.pn];return r&&r.a!=null&&r.b!=null;});
     if(!done) return null;
@@ -363,18 +400,21 @@ function makeResolver(results, overrides){
     if(info.type==='PERD_PART'){ const o=outcome(info.n); return o?o.lose:null; }
     if(info.type==='GAN_PAR'){ const o=outcome(info.n); return o?o.win:null; }
     if(info.type==='GAN_ZONA'){ return triWinner(rama, info.tok); }
-    if(info.type==='POS'){ const r=/^[A-F]$/i.test(info.zona)?'F':'M'; const z=info.zona.toUpperCase(); if(!groupComplete(r,z)) return null; return groupStanding(r, z)[info.pos-1]||null; }
+    if(info.type==='POS'){ const r=/^[A-F]$/i.test(info.zona)?'F':'M'; const z=info.zona.toUpperCase(); const hasOv=overrides.groupOrder&&overrides.groupOrder[r+'|'+z]; if(!groupComplete(r,z)&&!hasOv) return null; return groupStanding(r, z)[info.pos-1]||null; }
     return ref;
   }
-  return {R, outcome, groupStanding, triWinner, tableFrom, groupComplete};
+  return {R, outcome, groupStanding, triWinner, triParts, triTie, tableFrom, groupComplete};
 }
 
 // ================== STORE (resultados + sync) ==================
 const Store = {
-  results:{}, overrides:{}, editMode:false, fb:null, online:false,
+  results:{}, overrides:{triWin:{},groupOrder:{}}, editMode:false, fb:null, online:false,
   _res(){ return makeResolver(this.results, this.overrides); },
-  load(){ try{ const raw=localStorage.getItem('cbr_results'); if(raw) this.results=JSON.parse(raw)||{}; }catch(e){} },
-  saveLocal(){ try{ localStorage.setItem('cbr_results', JSON.stringify(this.results)); }catch(e){} },
+  load(){ try{
+    const r=localStorage.getItem('cbr_results'); if(r) this.results=JSON.parse(r)||{};
+    const o=localStorage.getItem('cbr_overrides'); if(o){ const ov=JSON.parse(o)||{}; this.overrides={triWin:ov.triWin||{},groupOrder:ov.groupOrder||{}}; }
+  }catch(e){} },
+  saveLocal(){ try{ localStorage.setItem('cbr_results', JSON.stringify(this.results)); localStorage.setItem('cbr_overrides', JSON.stringify(this.overrides)); }catch(e){} },
   setResult(pn, a, b){
     if(a===''||b===''||a==null||b==null){ delete this.results[pn]; }
     else { this.results[pn]={a:+a, b:+b}; }
@@ -382,6 +422,15 @@ const Store = {
     if(this.fb){ try{ this.fb.ref('resultados/'+pn).set(this.results[pn]||null); }catch(e){} }
     rerenderAll();
   },
+  setTriWin(rama, tok, team){
+    const k=rama+'|'+tok; if(team) this.overrides.triWin[k]=team; else delete this.overrides.triWin[k];
+    this.saveLocal(); this._syncOverrides(); rerenderAll();
+  },
+  setGroupOrder(key, arr){
+    if(arr&&arr.length) this.overrides.groupOrder[key]=arr; else delete this.overrides.groupOrder[key];
+    this.saveLocal(); this._syncOverrides(); rerenderAll();
+  },
+  _syncOverrides(){ if(this.fb){ try{ this.fb.ref('overrides').set(this.overrides); }catch(e){} } },
   initFirebase(){
     if(!FIREBASE_CONFIG || typeof firebase==='undefined') return;
     try{
@@ -391,6 +440,10 @@ const Store = {
         const v=snap.val()||{}; this.results={};
         Object.keys(v).forEach(k=>{ if(v[k]) this.results[k]=v[k]; });
         this.saveLocal(); this.online=true; rerenderAll(); updateAdminStatus();
+      });
+      this.fb.ref('overrides').on('value', snap=>{
+        const v=snap.val()||{}; this.overrides={triWin:v.triWin||{},groupOrder:v.groupOrder||{}};
+        this.saveLocal(); rerenderAll();
       });
     }catch(e){ console.warn('Firebase off', e); }
   }
@@ -510,11 +563,18 @@ function buildZonas(){
     const keys=Object.keys(zones).filter(k=>zones[k].rama===rama).sort();
     document.getElementById(elId).innerHTML=keys.map(k=>{
       const z=zones[k]; const st=res.groupStanding(rama, gzc(z.zona));
-      const anyScore = M.some(x=>x.phase==='group'&&x.rama===rama&&gzc(x.zona)===gzc(z.zona)&&Store.results[x.pn]);
-      const list = anyScore ? st : [...z.teams].sort();
+      const zk=gzc(z.zona);
+      const hasOv = Store.overrides.groupOrder && Store.overrides.groupOrder[rama+'|'+zk];
+      const anyScore = M.some(x=>x.phase==='group'&&x.rama===rama&&gzc(x.zona)===zk&&Store.results[x.pn]);
+      const ordered = anyScore || hasOv || Store.editMode;
+      const list = ordered ? st : [...z.teams].sort();
+      const edit=Store.editMode;
       return '<div class="zcard '+rama+'"><div class="zh"><span>Zona '+z.zona+'</span><span class="cnt">'+list.length+' equipos</span></div>'+
-        '<ul>'+list.map((t,i)=>'<li'+(t===BANCO?' class="banco"':'')+'>'+(anyScore?'<span class="posn">'+(i+1)+'</span>':'<span class="dot"></span>')+(t===BANCO?'Banco República ⭐':t)+'</li>').join('')+'</ul>'+
-        (anyScore?'<div class="ztip">Orden por victorias y dif. de sets</div>':'')+'</div>';
+        '<ul>'+list.map((t,i)=>'<li'+(t===BANCO?' class="banco"':'')+'>'+(ordered?'<span class="posn">'+(i+1)+'</span>':'<span class="dot"></span>')+
+          '<span class="znm">'+(t===BANCO?'Banco República ⭐':t)+'</span>'+
+          (edit?'<span class="zmove"><button class="zup" data-rama="'+rama+'" data-zona="'+zk+'" data-idx="'+i+'"'+(i===0?' disabled':'')+'>▲</button><button class="zdn" data-rama="'+rama+'" data-zona="'+zk+'" data-idx="'+i+'"'+(i===list.length-1?' disabled':'')+'>▼</button></span>':'')+
+          '</li>').join('')+'</ul>'+
+        (edit?'<div class="ztip">Ordená a mano con ▲▼'+(hasOv?' · <button class="zauto" data-rama="'+rama+'" data-zona="'+zk+'">volver a automático</button>':'')+'</div>':(anyScore?'<div class="ztip">Orden por victorias y dif. de sets</div>':''))+'</div>';
     }).join('');
   };
   render('M','zonasM'); render('F','zonasF');
@@ -553,9 +613,22 @@ function buildPlayoffs(){
         for(const tok of c.tris){
           const ms=(triByToken[rama+'|'+tok]||[]).slice().sort((a,b)=>a.pn-b.pn);
           const win=res.triWinner(rama,tok);
+          const manual=Store.overrides.triWin&&Store.overrides.triWin[rama+'|'+tok];
+          const tie=res.triTie(rama,tok);
+          let footer;
+          if(Store.editMode){
+            const parts=res.triParts(rama,tok);
+            let picker='';
+            if(parts.length){
+              picker='<div class="tri-pick-row">'+parts.map(t=>'<button class="tri-pick'+(win===t?' sel':'')+'" data-rama="'+rama+'" data-tok="'+tok+'" data-team="'+t.replace(/"/g,'&quot;')+'">'+shortBanco(t)+'</button>').join('')+
+                (manual?'<button class="tri-auto" data-rama="'+rama+'" data-tok="'+tok+'">Auto</button>':'')+'</div>';
+            } else { picker='<div class="tri-hint">Cargá los partidos de la llave para elegir</div>'; }
+            footer='<div class="po-triw edit">'+(tie&&!manual?'<span class="tie">⚠ Empate — elegí el ganador:</span>':'<span class="pklbl">Ganador de la llave:</span>')+picker+'</div>';
+          } else {
+            footer='<div class="po-triw">'+(win?'🏅 '+shortBanco(win)+(manual?' <span class="manbadge">manual</span>':''):'<span class="pend">Ganador a definir</span>')+'</div>';
+          }
           html+='<div class="po-tri"><div class="po-trih">Llave '+tok+'</div>'+
-            ms.map(m=>poMatchMini(m,R)).join('')+
-            '<div class="po-triw">'+(win?'🏅 '+shortBanco(win):'<span class="pend">Ganador a definir</span>')+'</div></div>';
+            ms.map(m=>poMatchMini(m,R)).join('')+footer+'</div>';
         }
         html+='</div>';
       }
@@ -631,6 +704,20 @@ document.addEventListener('input', e=>{
   const b=card.querySelector('.sc-in[data-side="b"]').value;
   if(a!==''&&b!==''){ Store.setResult(pn,a,b); }
   else if(a===''&&b===''){ Store.setResult(pn,'',''); }
+});
+// clicks de override manual (ganador de llave y orden de tabla)
+document.addEventListener('click', e=>{
+  const el=e.target; if(!el.classList) return;
+  if(el.classList.contains('tri-pick')){ Store.setTriWin(el.dataset.rama, el.dataset.tok, el.dataset.team); return; }
+  if(el.classList.contains('tri-auto')){ Store.setTriWin(el.dataset.rama, el.dataset.tok, null); return; }
+  if(el.classList.contains('zup')||el.classList.contains('zdn')){
+    const rama=el.dataset.rama, zona=el.dataset.zona, idx=+el.dataset.idx, dir=el.classList.contains('zup')?-1:1;
+    const cur=Store._res().groupStanding(rama, zona).slice();
+    const j=idx+dir; if(j<0||j>=cur.length) return;
+    const tmp=cur[idx]; cur[idx]=cur[j]; cur[j]=tmp;
+    Store.setGroupOrder(rama+'|'+zona, cur); return;
+  }
+  if(el.classList.contains('zauto')){ Store.setGroupOrder(el.dataset.rama+'|'+el.dataset.zona, null); return; }
 });
 
 // init
