@@ -251,6 +251,16 @@
   .pickitem .pkrama.M{background:#e7f0fb;color:#1b5aa0}
   .pickitem .pkrama.F{background:#fbe9f2;color:#a01b6b}
   #pickDone{background:var(--navy);color:#fff}
+  /* ===== Instructivo mesa de control ===== */
+  .modal-card.instruct{max-width:420px;text-align:left}
+  .modal-card.instruct h3{text-align:center}
+  .isub{text-align:center;margin:0 0 14px}
+  .isteps{margin:0 0 14px;padding-left:22px;display:flex;flex-direction:column;gap:9px}
+  .isteps li{font-size:13px;color:var(--ink);line-height:1.45}
+  .isteps li b{color:var(--navy)}
+  .icount{text-align:center;font-size:13px;font-weight:700;color:var(--blue);background:var(--sky);border-radius:8px;padding:8px;margin-bottom:12px}
+  #instrOk{background:var(--ok);color:#fff}
+  #instrOk:disabled{background:#b7c3ce;cursor:not-allowed}
 
 </style>
 </head>
@@ -341,6 +351,23 @@
     <input id="pinInput" type="password" inputmode="numeric" placeholder="PIN" maxlength="12">
     <div id="pinErr"></div>
     <div class="modal-btns"><button id="pinCancel">Cancelar</button><button id="pinOk">Entrar</button></div>
+  </div>
+</div>
+
+<div class="modal" id="instructModal">
+  <div class="modal-card instruct">
+    <h3>📋 Instructivo · Mesa de control</h3>
+    <p class="isub">Leé estos pasos antes de empezar a cargar. Se guarda y comparte <b>en vivo</b>.</p>
+    <ol class="isteps">
+      <li><b>Cargá el marcador en sets</b> de cada partido (ej: <b>3-1</b>). El sistema define solo al ganador.</li>
+      <li><b>La grilla avanza sola:</b> tablas de zona, ganadores de llave, semifinales y finales se completan automáticamente.</li>
+      <li><b>Cargá primero la fase de grupos.</b> Recién con la zona completa se definen las posiciones (1º, 2º, 3º…) que alimentan los playoffs.</li>
+      <li><b>Empate o sin dato:</b> en <b>Playoffs</b> elegí el ganador de la llave con un click; en <b>Zonas</b> ordená la tabla con ▲▼.</li>
+      <li><b>Revisá antes de cargar.</b> Cada marcador se comparte al instante con todos. Modificá solo si hubo un error real.</li>
+      <li>Al finalizar tu turno, tocá <b>“✅ Terminar carga”</b> arriba.</li>
+    </ol>
+    <div id="instrCount" class="icount"></div>
+    <div class="modal-btns"><button id="instrCancel">Cancelar</button><button id="instrOk" disabled>✅ Leí el instructivo, empezar</button></div>
   </div>
 </div>
 
@@ -735,9 +762,27 @@ function openPin(){ document.getElementById('pinModal').classList.add('show'); d
 function closePin(){ document.getElementById('pinModal').classList.remove('show'); }
 function tryPin(){
   const v=document.getElementById('pinInput').value.trim();
-  if(v===ADMIN_PIN){ Store.editMode=true; closePin(); updateAdminStatus(); rerenderAll(); }
+  if(v===ADMIN_PIN){ closePin(); openInstruct(); }
   else { document.getElementById('pinErr').textContent='PIN incorrecto'; }
 }
+// ===== Instructivo obligatorio con temporizador de lectura =====
+const READ_SECONDS = 15;
+let _readTimer=null;
+function openInstruct(){
+  const m=document.getElementById('instructModal'); m.classList.add('show');
+  const btn=document.getElementById('instrOk'); btn.disabled=true;
+  let left=READ_SECONDS;
+  const cd=document.getElementById('instrCount');
+  cd.textContent='Podés confirmar en '+left+'s';
+  if(_readTimer) clearInterval(_readTimer);
+  _readTimer=setInterval(()=>{
+    left--;
+    if(left>0){ cd.textContent='Podés confirmar en '+left+'s'; }
+    else { clearInterval(_readTimer); _readTimer=null; cd.textContent='¡Listo! Ya podés confirmar.'; btn.disabled=false; }
+  },1000);
+}
+function closeInstruct(){ if(_readTimer){clearInterval(_readTimer);_readTimer=null;} document.getElementById('instructModal').classList.remove('show'); }
+function confirmInstruct(){ closeInstruct(); Store.editMode=true; updateAdminStatus(); rerenderAll(); }
 function exitEdit(){ Store.editMode=false; updateAdminStatus(); rerenderAll(); }
 function updateAdminStatus(){
   const b=document.getElementById('adminBtn'); const st=document.getElementById('adminStatus');
@@ -817,6 +862,8 @@ Store.load();
 document.getElementById('adminBtn').onclick=()=>{ if(Store.editMode) exitEdit(); else openPin(); };
 document.getElementById('pinOk').onclick=tryPin;
 document.getElementById('pinCancel').onclick=closePin;
+document.getElementById('instrOk').onclick=confirmInstruct;
+document.getElementById('instrCancel').onclick=closeInstruct;
 document.getElementById('pinInput').addEventListener('keydown',e=>{ if(e.key==='Enter') tryPin(); });
 initFilters(); initTabs(); updateAdminStatus();
 Store.initFirebase();
